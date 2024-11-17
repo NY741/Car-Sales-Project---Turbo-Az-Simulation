@@ -18,5 +18,644 @@
     <script src="./assets/script.js" defer></script>
   </head>
 
-  <body></body>
+  <body>
+    <div class="backdrop hidden"></div>
+    <div class="display-car hidden">
+      <span class="display-car__close">X</span>
+      <h2 class="display-car__title"></h2>
+      <div class="display-car__container">
+        <div class="display-car__image">
+            <button class="button submit-button" id="display-car__buy-button">
+              Buy this car
+            </button>
+            <button class="button reset-button" id="display-car__close-button">
+              Close this add
+            </button>
+        </div>
+        <div class="display-car__description">
+          <table class="display-car__table first-table">
+            <tbody>
+              <tr data-type="brand">
+                <td>Brand</td>
+                <td></td>
+              </tr>
+              <tr data-type="model">
+                <td>Model</td>
+                <td></td>
+              </tr>
+              <tr data-type="color">
+                <td>Color</td>
+                <td></td>
+              </tr>
+              <tr data-type="year">
+                <td>Year</td>
+                <td></td>
+              </tr>
+              <tr data-type="mileage">
+                <td>Mileage</td>
+                <td></td>
+              </tr>
+              <tr data-type="body">
+                <td>Body Type</td>
+                <td></td>
+              </tr>
+              <tr data-type="amount">
+                <td>Price</td>
+                <td></td>
+              </tr>
+              <tr data-type="engine-volume">
+                <td>Engine Volume</td>
+                <td></td>
+              </tr>
+              <tr data-type="horse-power">
+                <td>Horse Power</td>
+                <td></td>
+              </tr>
+              <tr data-type="fuel">
+                <td>Fuel Type</td>
+                <td></td>
+              </tr>
+              <tr data-type="gear-type">
+                <td>Gear Type</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="display-car__table second-table">
+            <tbody>
+              <tr data-type="drive">
+                <td>Wheel Drive</td>
+                <td></td>
+              </tr>
+              <tr data-type="seat-num">
+                <td>Seat Number</td>
+                <td></td>
+              </tr>
+              <tr data-type="date">
+                <td>Report Date</td>
+                <td></td>
+              </tr>
+              <tr data-type="city">
+                <td>City</td>
+                <td></td>
+              </tr>
+              <tr data-type="owner">
+                <td>Owner Name</td>
+                <td></td>
+              </tr>
+              <tr data-type="mobile-number">
+                <td>Mobile number</td>
+                <td></td>
+              </tr>
+              <tr data-type="is-barter">
+                <td>Barter availability</td>
+                <td></td>
+              </tr>
+              <tr data-type="is-credit">
+                <td>Credit availability</td>
+                <td></td>
+              </tr>
+              <tr data-type="is-new">
+                <td>Is car new?</td>
+                <td></td>
+              </tr>
+              <tr data-type="is-crashed">
+                <td>Is car crashed?</td>
+                <td></td>
+              </tr>
+              <tr data-type="is-sold">
+                <td>Is car sold?</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="add-car hidden">
+      <h2 class="add-car__header">
+        Add New Car details
+        <span class="add-car__close">X</span>
+      </h2>
+      <form method="get" id="add-car__form">
+        <div>
+          <label for="add-brand">Brand:</label>
+          <select id="add-brand" required>
+            <option value="undefined" disabled selected>
+              Select car brand
+            </option>
+            <option value="audi">Audi</option>
+            <option value="bmw">BMW</option>
+            <option value="ford">Ford</option>
+            <option value="hyndai">Hyndai</option>
+            <option value="kia">Kia</option>
+            <option value="land rover">Land Rover</option>
+            <option value="mercedes">Mercedes</option>
+            <option value="porsche">Porsche</option>
+            <option value="renault">Renault</option>
+            <option value="tesla">Tesla</option>
+            <option value="toyota">Toyota</option>
+            <option value="volkswagen">Volkswagen</option>
+          </select>
+        </div>
+        <div>
+          <label for="add-model">Model:</label>
+          <select id="add-model" required>
+            <!-- <option value="undefined" disabled selected>Select car model</option> -->
+            <option value="C 250">C 250</option>
+          </select>
+        </div>
+        <div>
+          <label for="add-color">Color:</label>
+          <select id="add-color">
+            <option value="black">Black</option>
+            <option value="blue">Blue</option>
+            <option value="green">Green</option>
+            <option value="grey">Grey</option>
+            <option value="silver">Silver</option>
+            <option value="wet asphalt">Wet Asphalt</option>
+            <option value="white">White</option>
+          </select>
+        </div>
+        <div>
+          <label for="add-year">Year:</label>
+          <input type="number" id="add-year" min="1980" max="2024" required />
+        </div>
+        <div>
+          <label for="add-mileage">Mileage:</label>
+          <input type="number" id="add-mileage" min="0" required />
+        </div>
+        <div>
+          <label for="add-body">Body:</label>
+          <select id="add-body">
+            <option value="all">All bodies</option>
+            <option value="cabriolet">Cabriolet</option>
+            <option value="coupe">Coupe</option>
+            <option value="hatchback">Hatchback</option>
+            <option value="liftback">Liftback</option>
+            <option value="limousine">Limousine</option>
+            <option value="pickup">Pickup</option>
+            <option value="roadster">Roadster</option>
+            <option value="sedan">Sedan</option>
+            <option value="suv">SUV</option>
+            <option value="sportscar">Sportscar</option>
+            <option value="universal">Universal</option>
+          </select>
+        </div>
+        <div>
+          <label for="add-amount">Price Amount:</label>
+          <input type="number" id="add-amount" required />
+        </div>
+        <div>
+          <label for="add-currency">Price Currency:</label>
+          <select id="add-currency" required>
+            <option value="AZN">AZN</option>
+            <option value="EUR">EUR</option>
+            <option value="USD">USD</option>
+          </select>
+        </div>
+        <div>
+          <label for="add-engine-volume">Engine Volume:</label>
+          <input
+            type="number"
+            id="add-engine-volume"
+            min="1000"
+            max="16000"
+            step="100"
+            required
+          />
+        </div>
+        <div>
+          <label for="add-horse-power">Horse Power:</label>
+          <input type="number" id="add-horse-power" min="0" max="3000" />
+        </div>
+        <div>
+          <label for="add-fuel">Fuel Type:</label>
+          <select id="add-fuel">
+            <option value="gas">Gas</option>
+            <option value="diesel">Diesel</option>
+            <option value="electro">Electro</option>
+            <option value="hybrid">Hybrid</option>
+            <option value="plug-in hybrid">Plug-In Hybrid</option>
+          </select>
+        </div>
+        <div>
+          <label for="add-gear-type">Gear Type:</label>
+          <select id="add-gear-type">
+            <option value="auto">Auto</option>
+            <option value="manual">Manual</option>
+          </select>
+        </div>
+        <div>
+          <label for="add-drive">Wheel Drive Type:</label>
+          <select id="add-drive">
+            <option value="front">Front</option>
+            <option value="rear">Rear</option>
+            <option value="full">Full</option>
+          </select>
+        </div>
+        <div>
+          <label for="add-seat-num">Seat Number</label>
+          <input type="num" id="add-seat-num" min="1" max="100" />
+        </div>
+        <div>
+          <label for="add-owner">Owner Name:</label>
+          <input type="text" id="add-owner" />
+        </div>
+        <div>
+          <label for="add-city">City</label>
+          <select id="add-city" required>
+            <option value="baku">Baku</option>
+            <option value="ganja">Ganja</option>
+            <option value="minqechevir">Minqechevir</option>
+            <option value="sumqayit">Sumqayit</option>
+            <option value="yevlax">Yevlax</option>
+          </select>
+        </div>
+        <div>
+          <label for="add-mobile-number">Mobile Number (+994):</label>
+          <input type="number" id="add-mobile-number" max="709999999" />
+        </div>
+        <div>
+          <label for="add-is-new">Car is New?</label>
+          <input type="checkbox" id="add-is-new" />
+        </div>
+        <div>
+          <label for="add-is-barter">Barter is applicable?</label>
+          <input type="checkbox" id="add-is-barter" />
+        </div>
+        <div>
+          <label for="add-is-crashed">Car has been crashed?</label>
+          <input type="checkbox" id="add-is-crashed" />
+        </div>
+        <div>
+          <label for="add-is-credit">Credit pay is applicable?</label>
+          <input type="checkbox" id="add-is-credit" />
+        </div>
+        <div>
+          <label for="add-is-premium">Make this add premium</label>
+          <input type="checkbox" id="add-is-premium" />
+        </div>
+        <div>
+          <label for="add-image"></label>
+          <input type="file" id="add-image" />
+        </div>
+        <button class="button" type="submit" id="add-block__submit-button">
+          Create
+        </button>
+        <button class="button" type="reset">Reset</button>
+      </form>
+    </div>
+
+    <div class="container">
+      <section class="banner-header">
+        <img src="./assets/images/banner_header.jpg" alt="" />
+      </section>
+      <header class="header">
+        <ul class="header__menu menu-left">
+          <li><a href="#">Tap.az</a></li>
+          <li><a href="#">Bina.az</a></li>
+          <li><a href="#">Boss.az</a></li>
+        </ul>
+        <ul class="header__menu menu-right">
+          <li><a href="#">Yardim</a></li>
+          <li><a href="#">RU</a></li>
+          <li><a href="#">Seçilmişlər</a></li>
+          <li><a href="#">Giriş</a></li>
+        </ul>
+      </header>
+      <nav class="navigation-header">
+        <div class="navigation-header__left">
+          <div class="navigation-header__logo">TURBO.AZ</div>
+          <ul class="navigation-header__menu">
+            <li><a href="#">Bütün elanlar</a></li>
+            <li><a href="#">Salonlar</a></li>
+            <li><a href="#">Moto</a></li>
+            <li><a href="#">Ehtiyat hissələri və aksesuarlar</a></li>
+            <li><a href="#">İcarə</a></li>
+          </ul>
+        </div>
+        <div class="navigation-header__add">
+          <button id="add-car-button" class="button button-special">
+            Yeni elan
+          </button>
+        </div>
+      </nav>
+      <div class="content">
+        <div class="center">
+          <div id="search-block">
+            <h2 class="content__header">Car Search</h2>
+            <form id="search-form">
+              <div class="search-form__item">
+                <select name="brand" id="brand" class="full-block main-element">
+                  <option value="all">All brands</option>
+                </select>
+              </div>
+              <div class="search-form__item">
+                <select
+                  name="model"
+                  id="model"
+                  class="full-block main-element"
+                  disabled
+                >
+                  <option value="all">All models</option>
+                </select>
+              </div>
+              <div class="search-form__item flexbox">
+                <input
+                  type="radio"
+                  name="condition"
+                  id="condition-all"
+                  class="third-block main-element"
+                  value="all"
+                />
+                <input
+                  type="radio"
+                  name="condition"
+                  id="condition-new"
+                  class="third-block"
+                  value="new"
+                />
+                <input
+                  type="radio"
+                  name="condition"
+                  id="condition-old"
+                  class="third-block"
+                  value="old"
+                />
+              </div>
+              <div class="search-form__item">
+                <select name="city" id="city" class="full-block main-element">
+                  <option value="all">All cities</option>
+                  <option value="baku">Baku</option>
+                  <option value="ganja">Ganja</option>
+                  <option value="mingachevir">Mingachevir</option>
+                  <option value="sumqayit">Sumqayit</option>
+                </select>
+              </div>
+              <div class="search-form__item flexbox">
+                <input
+                  type="number"
+                  class="half-block"
+                  id="price-min"
+                  min="0"
+                  step="500"
+                  placeholder="Min price"
+                />
+                <input
+                  type="number"
+                  class="half-block"
+                  id="price-max"
+                  min="0"
+                  step="500"
+                  placeholder="Max price"
+                />
+              </div>
+              <div class="search-form__item flexbox">
+                <select
+                  name="currency"
+                  id="currency"
+                  class="half-block main-element"
+                >
+                  <option value="all">All prices</option>
+                  <option value="AZN">AZN</option>
+                  <option value="EUR">EUR</option>
+                  <option value="USD">USD</option>
+                </select>
+                <input
+                  type="checkbox"
+                  name="conversion"
+                  id="conversion"
+                  class="half-block"
+                  title="Clicking this button you will be able to use conversion of the chosen currency!"
+                />
+              </div>
+              <div class="search-form__item flexbox">
+                <select name="sale" id="sale" class="half-block main-element">
+                  <option value="all">All sales</option>
+                  <option value="credit">Credit only</option>
+                  <option value="barter">Barter only</option>
+                </select>
+                <select name="body" id="body" class="half-block main-element">
+                  <option value="all">All bodies</option>
+                  <option value="cabriolet">Cabriolet</option>
+                  <option value="coupe">Coupe</option>
+                  <option value="hatchback">Hatchback</option>
+                  <option value="liftback">Liftback</option>
+                  <option value="limousine">Limousine</option>
+                  <option value="pickup">Pickup</option>
+                  <option value="roadster">Roadster</option>
+                  <option value="sedan">Sedan</option>
+                  <option value="suv">SUV</option>
+                  <option value="sportscar">Sportscar</option>
+                  <option value="universal">Universal</option>
+                </select>
+              </div>
+              <div class="search-form__item flexbox">
+                <input
+                  id="year-min"
+                  type="number"
+                  class="half-block"
+                  min="1980"
+                  max="2024"
+                  step="1"
+                  placeholder="Min year"
+                />
+                <input
+                  id="year-max"
+                  type="number"
+                  class="half-block"
+                  min="1980"
+                  max="2024"
+                  step="1"
+                  placeholder="Max year"
+                />
+              </div>
+              <div class="search-form__item extended-option hidden">
+                <select name="color" id="color" class="full-block main-element">
+                  <option value="all">All colors</option>
+                  <option value="white">White</option>
+                  <option value="black">Black</option>
+                  <option value="silver">Silver</option>
+                  <option value="grey">Grey</option>
+                  <option value="blue">Blue</option>
+                  <option value="green">Green</option>
+                  <option value="red">Red</option>
+                  <option value="wet asphalt">Wet asphalt</option>
+                </select>
+              </div>
+              <div class="search-form__item extended-option hidden">
+                <select name="fuel" id="fuel" class="full-block main-element">
+                  <option value="all">All fuel types</option>
+                  <option value="gas">Gas</option>
+                  <option value="diesel">Diesel</option>
+                  <option value="hybrid">Hybrid</option>
+                </select>
+              </div>
+              <div class="search-form__item extended-option hidden">
+                <select name="drive" id="drive" class="full-block main-element">
+                  <option value="all">Wheel drive types</option>
+                  <option value="front">Front</option>
+                  <option value="rear">Rear</option>
+                  <option value="full">Full</option>
+                </select>
+              </div>
+              <div class="search-form__item extended-option hidden">
+                <select
+                  name="gear-type"
+                  id="gear-type"
+                  class="full-block main-element"
+                >
+                  <option value="all">All gear types</option>
+                  <option value="auto">Auto</option>
+                  <option value="manual">Manual</option>
+                </select>
+              </div>
+              <div class="search-form__item extended-option hidden flexbox">
+                <input
+                  name="engine-volume"
+                  id="engine-volume-min"
+                  type="number"
+                  class="half-block"
+                  min="0"
+                  max="16000"
+                  step="100"
+                  placeholder="Min engine volume"
+                />
+                <input
+                  name="engine-volume"
+                  id="engine-volume-max"
+                  type="number"
+                  class="half-block"
+                  min="0"
+                  max="16000"
+                  step="100"
+                  placeholder="Max engine volume"
+                />
+              </div>
+              <div class="search-form__item extended-option hidden flexbox">
+                <input
+                  name="horse-power"
+                  id="horse-power-min"
+                  type="number"
+                  class="half-block"
+                  min="0"
+                  max="2000"
+                  step="10"
+                  placeholder="Min horse power"
+                />
+                <input
+                  name="horse-power"
+                  id="horse-power-max"
+                  type="number"
+                  class="half-block"
+                  min="0"
+                  max="2000"
+                  step="10"
+                  placeholder="Max horse power"
+                />
+              </div>
+              <div class="search-form__item extended-option hidden flexbox">
+                <input
+                  name="mileage"
+                  id="mileage-min"
+                  type="number"
+                  class="half-block"
+                  min="0"
+                  max="3000000"
+                  step="1000"
+                  placeholder="Min mileage"
+                />
+                <input
+                  name="mileage"
+                  id="mileage-max"
+                  type="number"
+                  class="half-block"
+                  min="0"
+                  max="3000000"
+                  step="1000"
+                  placeholder="Max mileage"
+                />
+              </div>
+              <div class="search-form__item extended-option hidden">
+                <input
+                  class="full-block main-element"
+                  id="seat-num"
+                  name="seat-num"
+                  type="number"
+                  min="0"
+                  max="30"
+                  step="1"
+                  placeholder="Seat number"
+                />
+              </div>
+              <div class="search-form__item extended-option hidden flexbox">
+                <input
+                  class="half-block"
+                  id="not-crashed"
+                  name="not-crashed"
+                  type="checkbox"
+                  title="Clicking this button only not crashed cars will be shown!"
+                />
+                <input
+                  class="half-block"
+                  id="favorite"
+                  name="favorite"
+                  type="checkbox"
+                  title="Clicking this button only favorite cars will be shown!"
+                />
+              </div>
+              <div class="search-form__item">
+                <button id="extended-search" class="button">
+                  Show more search options
+                </button>
+              </div>
+              <div class="search-form__item flexbox">
+                <button
+                  type="submit"
+                  id="search-form__submit"
+                  class="half-block button submit-button"
+                >
+                  Search
+                </button>
+                <button
+                  type="reset"
+                  id="search-form__reset"
+                  class="half-block button reset-button"
+                >
+                  Reset
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div id="sort-block">
+            <form id="sort-form">
+              <!-- <span>Sort Cars by:</span> -->
+              <button id="sort-date" class="button sort-button">
+                Report Date (to newest)
+              </button>
+              <button id="sort-name" class="button sort-button">
+                Car Model (A-Z)
+              </button>
+              <button id="sort-price" class="button sort-button">
+                Car Price (to highest)
+              </button>
+              <button id="sort-year" class="button sort-button">
+                Car Year (to highest)
+              </button>
+            </form>
+          </div>
+          <main class="main">
+            <h2 class="main__header">Premium Car Advertisements</h2>
+            <div class="main__premium-cars"></div>
+            <h2 class="main__header">All Car Advertisements</h2>
+            <div class="main__cars"></div>
+          </main>
+          <nav class="navigation-footer"></nav>
+        </div>
+      </div>
+      <!-- <footer class="footer"></footer> -->
+    </div>
+  </body>
 </html>
