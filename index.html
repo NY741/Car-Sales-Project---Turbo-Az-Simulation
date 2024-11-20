@@ -631,18 +631,33 @@
 
           <div id="sort-block">
             <form id="sort-form">
-              <!-- <span>Sort Cars by:</span> -->
-              <button id="sort-date" class="button sort-button chosen-sort">
-                Report Date (to newest)
+              <button
+                id="sort-date"
+                class="button sort-button"
+                data-sort="date"
+              >
+                Report Date <small>(to highest)</small>
               </button>
-              <button id="sort-name" class="button sort-button">
-                Car Model (A-Z)
+              <button
+                id="sort-name"
+                class="button sort-button"
+                data-sort="name"
+              >
+                Car Name <small>(A-Z)</small>
               </button>
-              <button id="sort-price" class="button sort-button">
-                Car Price (to highest)
+              <button
+                id="sort-price"
+                class="button sort-button"
+                data-sort="price"
+              >
+                Car Price <small>(to highest)</small>
               </button>
-              <button id="sort-year" class="button sort-button">
-                Car Year (to highest)
+              <button
+                id="sort-year"
+                class="button sort-button"
+                data-sort="year"
+              >
+                Car Year <small>(to highest)</small>
               </button>
             </form>
           </div>

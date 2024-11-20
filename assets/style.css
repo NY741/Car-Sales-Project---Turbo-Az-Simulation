@@ -332,13 +332,13 @@ p.main__address {
 
 .sort-button:hover {
   color: #fff;
-  background-color: #4b8;
+  background-color: #0a7;
   box-shadow: 0 0 6px #999;
 }
 
 .chosen-sort {
   color: #fff;
-  background-color: #4b8;
+  background-color: #c00;
 }
 
 #extended-search {

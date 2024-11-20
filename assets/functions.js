@@ -155,18 +155,34 @@ function setColorOptions() {
   });
 }
 
+// FUNCTION CHECK SORTED TYPE
+function checkSortedType(direction) {
+  const sortButtons = sortForm.getElementsByClassName("sort-button");
+  Array.from(sortButtons).forEach((button) => {
+    if (button.classList.contains("chosen-sort")) {
+      let directText =
+        direction == "ascending"
+          ? "from lowest to highest"
+          : "from highest to lowest";
+          if (button.id == 'sort-name' && direction == 'ascending') directText = 'from A to Z';
+          if (button.id == 'sort-name' && direction == 'descending') directText = 'from Z to A';
+      button.title = `Cars are sorted by ${capitalize(button.dataset.sort)} ${directText}`;
+    } else button.title = "";
+  });
+}
+
 // FUNCTION SORT BY DATE +
 function sortByDate(array, direction) {
   array.sort((a, b) => {
     if (direction == "ascending") {
       if (a.date > b.date) return 1;
       if (a.date < b.date) return -1;
-      sortDateBtn.innerText = "Report Date (to oldest)";
+      sortDateBtn.innerHTML = "Report Date <small>(to lowest)</small>";
       sortDateType = "descending";
     } else if (direction == "descending") {
       if (a.date > b.date) return -1;
       if (a.date < b.date) return 1;
-      sortDateBtn.innerText = "Report Date (to newest)";
+      sortDateBtn.innerHTML = "Report Date <small>(to highest)</small>";
       sortDateType = "ascending";
     }
   });
@@ -175,6 +191,7 @@ function sortByDate(array, direction) {
     sortPriceBtn.className =
     sortYearBtn.className =
       "button sort-button";
+  checkSortedType(direction);
   carsBlock.innerHTML = "";
   showCars(array, carsBlock);
 }
@@ -185,12 +202,12 @@ function sortByName(array, direction) {
     if (direction == "ascending") {
       if (a.brand.toLowerCase() > b.brand.toLowerCase()) return 1;
       if (a.brand.toLowerCase() < b.brand.toLowerCase()) return -1;
-      sortNameBtn.innerText = "Car Model (Z-A)";
+      sortNameBtn.innerHTML = "Car Name <small>(Z-A)</small>";
       sortNameType = "descending";
     } else if (direction == "descending") {
       if (a.brand.toLowerCase() < b.brand.toLowerCase()) return 1;
       if (a.brand.toLowerCase() > b.brand.toLowerCase()) return -1;
-      sortNameBtn.innerText = "Car Model (A-Z)";
+      sortNameBtn.innerHTML = "Car Name <small>(A-Z)</small>";
       sortNameType = "ascending";
     }
   });
@@ -199,6 +216,7 @@ function sortByName(array, direction) {
     sortPriceBtn.className =
     sortYearBtn.className =
       "button sort-button";
+  checkSortedType(direction);
   carsBlock.innerHTML = "";
   showCars(array, carsBlock);
 }
@@ -210,11 +228,11 @@ function sortByPrice(array, direction) {
     if (direction == "ascending") {
       sign = 1;
       sortPriceType = "descending";
-      sortPriceBtn.innerText = "Car Price (to lowest)";
+      sortPriceBtn.innerHTML = "Car Price <small>(to lowest)</small>";
     } else if (direction == "descending") {
       sign = -1;
       sortPriceType = "ascending";
-      sortPriceBtn.innerText = "Car Price (to highest)";
+      sortPriceBtn.innerHTML = "Car Price <small>(to highest)</small>";
     }
     if (a.currency == "USD" && b.currency == "USD")
       return sign * (a.amount * convertUsdToAzn - b.amount * convertUsdToAzn);
@@ -239,6 +257,7 @@ function sortByPrice(array, direction) {
     sortNameBtn.className =
     sortYearBtn.className =
       "button sort-button";
+  checkSortedType(direction);
   carsBlock.innerHTML = "";
   showCars(array, carsBlock);
 }
@@ -248,17 +267,18 @@ function sortByYear(array, direction) {
   if (direction == "ascending") {
     array.sort((a, b) => a.year - b.year);
     sortYearType = "descending";
-    sortYearBtn.innerText = "Car Year (to lowest)";
+    sortYearBtn.innerHTML = "Car Year <small>(to lowest)</small>";
   } else if (direction == "descending") {
     array.sort((a, b) => b.year - a.year);
     sortYearType = "ascending";
-    sortYearBtn.innerText = "Car Year (to highest)";
+    sortYearBtn.innerHTML = "Car Year <small>(to highest)</small>";
   }
   sortYearBtn.className = "button sort-button chosen-sort";
   sortDateBtn.className =
     sortNameBtn.className =
     sortPriceBtn.className =
       "button sort-button";
+  checkSortedType(direction);
   carsBlock.innerHTML = "";
   showCars(array, carsBlock);
 }
