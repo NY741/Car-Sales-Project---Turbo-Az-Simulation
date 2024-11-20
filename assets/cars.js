@@ -55,6 +55,10 @@ class Car {
     this.id = id;
   }
   isFavorite = false;
+
+  displayCar() {
+    console.log(this);
+  }
 }
 
 const cars = [

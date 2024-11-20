@@ -381,7 +381,6 @@ function showCars(cars, block) {
     const today = new Date();
     const diff = today - reportDate;
     const diffInDays = Math.floor(diff / (1000 * 60 * 60 * 24));
-    // console.log(diffInDays);
 
     const address = document.createElement("p");
     address.className = "main__address";
@@ -435,44 +434,29 @@ function showCars(cars, block) {
     favoriteSign.addEventListener("click", function (e) {
       e.preventDefault();
       toggleFavorite(car, this);
-      // sortByFavorite(cars);
       favorites.push(car);
     });
-  }
 
-  const cards = document.querySelectorAll(".main__car-link");
-
-  for (let card of cards) {
-    const cardDesc = card.querySelector(".main__description");
-    cardDesc.addEventListener("click", function (e) {
+    link.addEventListener("click", function (e) {
       e.preventDefault();
       displayCarBlock.classList.remove("hidden");
       backdrop.classList.remove("hidden");
-      const id = card.title;
-      const chosenCar = cars.find((car) => car.id == id);
-
-      buyCarBtn.addEventListener("click", function (e) {
-        e.preventDefault();
-        buyCar(id);
-      });
-
-      console.log(chosenCar);
       displayCarTitle.innerText =
-        chosenCar.brand +
+        car.brand +
         " " +
-        chosenCar.model +
+        car.model +
         ", " +
-        chosenCar.year +
+        car.year +
         ", " +
-        chosenCar.engineVolume +
+        car.engineVolume +
         " L, " +
-        chosenCar.horsePower +
+        car.horsePower +
         " HP, " +
-        chosenCar.mileage +
+        car.mileage +
         " KM";
       const carImage = document.createElement("img");
-      carImage.src = chosenCar.imageLink;
-      carImage.alt = chosenCar.brand + " " + chosenCar.model;
+      carImage.src = car.imageLink;
+      carImage.alt = car.brand + " " + car.model;
       displayCarImage.prepend(carImage);
 
       const firstTableDatas = displayCarTable1.querySelectorAll(
@@ -482,36 +466,105 @@ function showCars(cars, block) {
         "tr > td:nth-of-type(2)"
       );
 
-      fillTableDatas(firstTableDatas);
-      fillTableDatas(secondTableDatas);
+      fillTableDatas(car, firstTableDatas);
+      fillTableDatas(car, secondTableDatas);
 
-      if (chosenCar) return;
-
-      // FUNCTION FILL TABLE DATAS
-      function fillTableDatas(tableDatas) {
-        for (let td of tableDatas) {
-          let tr = td.parentNode.dataset.type;
-          tr = camelCase(tr);
-          td.innerText = chosenCar[tr];
-          if (td.innerText == "true") td.innerText = "Yes";
-          else if (td.innerText == "false") td.innerText = "No";
-        }
-      }
-
-      // FUNCTION BUY CAR - CHANGE THIS CODE !!!
-      function buyCar(id) {
-        const boughtCar = cars.find((car) => car.id == id);
-        boughtCar.isSold = true;
-        closeDisplayCarBlock();
-
-        // premiumCarsBlock.innerHTML = "";
-        carsBlock.innerHTML = "";
-        // showCars(cars, premiumCarsBlock);
-        showCars(cars, carsBlock);
-      }
+      if (car) return;
     });
   }
+
+  const cards = document.querySelectorAll(".main__car-link");
+
+  // addCarsDisplayFunction(cars);
+  // for (let card of cards) {
+  //   const cardDesc = card.querySelector(".main__description");
+  //   cardDesc.addEventListener("click", function (e) {
+  //     e.preventDefault();
+  //     displayCarBlock.classList.remove("hidden");
+  //     backdrop.classList.remove("hidden");
+  //     const id = card.title;
+  //     const chosenCar = cars.find((car) => car.id == id);
+
+  //     buyCarBtn.addEventListener("click", function (e) {
+  //       e.preventDefault();
+  //       buyCar(id);
+  //     });
+
+  //     console.log(chosenCar);
+  //     displayCarTitle.innerText =
+  //       chosenCar.brand +
+  //       " " +
+  //       chosenCar.model +
+  //       ", " +
+  //       chosenCar.year +
+  //       ", " +
+  //       chosenCar.engineVolume +
+  //       " L, " +
+  //       chosenCar.horsePower +
+  //       " HP, " +
+  //       chosenCar.mileage +
+  //       " KM";
+  //     const carImage = document.createElement("img");
+  //     carImage.src = chosenCar.imageLink;
+  //     carImage.alt = chosenCar.brand + " " + chosenCar.model;
+  //     displayCarImage.prepend(carImage);
+
+  //     const firstTableDatas = displayCarTable1.querySelectorAll(
+  //       "tr > td:nth-of-type(2)"
+  //     );
+  //     const secondTableDatas = displayCarTable2.querySelectorAll(
+  //       "tr > td:nth-of-type(2)"
+  //     );
+
+  //     fillTableDatas(firstTableDatas);
+  //     fillTableDatas(secondTableDatas);
+
+  //     if (chosenCar) return;
+
+  // //     // FUNCTION FILL TABLE DATAS
+  //     function fillTableDatas(tableDatas) {
+  //       for (let td of tableDatas) {
+  //         let tr = td.parentNode.dataset.type;
+  //         tr = camelCase(tr);
+  //         td.innerText = chosenCar[tr];
+  //         if (td.innerText == "true") td.innerText = "Yes";
+  //         else if (td.innerText == "false") td.innerText = "No";
+  //       }
+  //     }
+
+  //     // FUNCTION BUY CAR - CHANGE THIS CODE !!!
+  //     function buyCar(id) {
+  //       const boughtCar = cars.find((car) => car.id == id);
+  //       boughtCar.isSold = true;
+  //       closeDisplayCarBlock();
+
+  //       // premiumCarsBlock.innerHTML = "";
+  //       carsBlock.innerHTML = "";
+  //       // showCars(cars, premiumCarsBlock);
+  //       showCars(cars, carsBlock);
+  //     }
+  //   });
+  // }
 }
+
+// FUNCTION DISPLAY CAR REPORT
+// function addCarsDisplayFunction(cars) {
+//   for (let car of cars) {
+//     const cardDesc = card.querySelector(".main__description");
+//     cardDesc.addEventListener("click", function (e) {
+//       e.preventDefault();
+//       displayCarBlock.classList.remove("hidden");
+//       backdrop.classList.remove("hidden");
+//       const id = card.title;
+//       const chosenCar = cars.find((car) => car.id == id);
+
+//       buyCarBtn.addEventListener("click", function (e) {
+//         e.preventDefault();
+//         buyCar(id);
+//       });
+//     });
+//   }
+// }
 
 // FUNCTION LAUNCH APP
 function launchApp() {

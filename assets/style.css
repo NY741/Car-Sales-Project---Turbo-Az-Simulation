@@ -224,6 +224,7 @@ h2 {
   font-size: 11pt;
   font-weight: 600;
   letter-spacing: 1px;
+  text-shadow: 1px 1px 1px #aaa;
 }
 
 .main__name {

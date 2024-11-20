@@ -105,13 +105,11 @@ function setModelChoice() {
 function getCheckedCondition() {
   for (let cond of conditions) {
     if (!cond.checked) {
-      // console.log("Un-Checked condition", cond);
       if (cond.classList.contains("main-element")) {
         cond.classList.remove("main-element");
         cond.removeAttribute("checked");
       }
     } else if (cond.checked) {
-      // console.log("Checked condition", cond);
       if (!cond.classList.contains("main-element")) {
         cond.classList.add("main-element");
         cond.setAttribute("checked", "true");
@@ -149,7 +147,6 @@ function setColorOptions() {
       option.classList.add("white-text");
     } else option.style.color = "#000";
     option.style.backgroundColor = option.value;
-    // applied for 'wet asphalt' color only / because this color does not have according 'text' value
     if (option.value == "wet asphalt")
       option.style.backgroundColor = "#22223f ";
   });
@@ -298,3 +295,14 @@ function capitalize(str) {
   if (!str) return str;
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
+
+// FUNCTION FILL TABLE DATAS
+  function fillTableDatas(car, tableDatas) {
+    for (let td of tableDatas) {
+      let tr = td.parentNode.dataset.type;
+      tr = camelCase(tr);
+      td.innerText = car[tr];
+      if (td.innerText == "true") td.innerText = "Yes";
+      else if (td.innerText == "false") td.innerText = "No";
+    }
+  }
