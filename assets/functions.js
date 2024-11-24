@@ -10,6 +10,43 @@ function closeAddBlock() {
   addBlock.classList.add("hidden");
 }
 
+// FUCNTION DISPLAY CAR
+function displayCar() {
+  let car = cars.find((car) => car.id == this.title);
+  console.log(car);
+  displayCarBlock.classList.remove("hidden");
+  backdrop.classList.remove("hidden");
+  displayCarTitle.innerText =
+    car.brand +
+    " " +
+    car.model +
+    ", " +
+    car.year +
+    ", " +
+    car.engineVolume +
+    " L, " +
+    car.horsePower +
+    " HP, " +
+    car.mileage +
+    " KM";
+  const carImage = document.createElement("img");
+  carImage.src = car.imageLink;
+  carImage.alt = car.brand + " " + car.model;
+  displayCarImage.prepend(carImage);
+
+  const firstTableDatas = displayCarTable1.querySelectorAll(
+    "tr > td:nth-of-type(2)"
+  );
+  const secondTableDatas = displayCarTable2.querySelectorAll(
+    "tr > td:nth-of-type(2)"
+  );
+
+  fillTableDatas(car, firstTableDatas);
+  fillTableDatas(car, secondTableDatas);
+
+  // if (car) return;
+}
+
 // FUNCTION CLOSE DISPLAY CAR BLOCK
 function closeDisplayCarBlock() {
   displayCarImage.innerHTML = "";
@@ -161,9 +198,13 @@ function checkSortedType(direction) {
         direction == "ascending"
           ? "from lowest to highest"
           : "from highest to lowest";
-          if (button.id == 'sort-name' && direction == 'ascending') directText = 'from A to Z';
-          if (button.id == 'sort-name' && direction == 'descending') directText = 'from Z to A';
-      button.title = `Cars are sorted by ${capitalize(button.dataset.sort)} ${directText}`;
+      if (button.id == "sort-name" && direction == "ascending")
+        directText = "from A to Z";
+      if (button.id == "sort-name" && direction == "descending")
+        directText = "from Z to A";
+      button.title = `Cars are sorted by ${capitalize(
+        button.dataset.sort
+      )} ${directText}`;
     } else button.title = "";
   });
 }
@@ -297,12 +338,12 @@ function capitalize(str) {
 }
 
 // FUNCTION FILL TABLE DATAS
-  function fillTableDatas(car, tableDatas) {
-    for (let td of tableDatas) {
-      let tr = td.parentNode.dataset.type;
-      tr = camelCase(tr);
-      td.innerText = car[tr];
-      if (td.innerText == "true") td.innerText = "Yes";
-      else if (td.innerText == "false") td.innerText = "No";
-    }
+function fillTableDatas(car, tableDatas) {
+  for (let td of tableDatas) {
+    let tr = td.parentNode.dataset.type;
+    tr = camelCase(tr);
+    td.innerText = car[tr];
+    if (td.innerText == "true") td.innerText = "Yes";
+    else if (td.innerText == "false") td.innerText = "No";
   }
+}

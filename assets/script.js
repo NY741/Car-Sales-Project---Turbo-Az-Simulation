@@ -338,10 +338,11 @@ function showCars(cars, block) {
       return car.isPremium;
     });
 
-  //   if (isInitialRendering) { // change this code !!!
-  //     sortByDate(sortedCars, "ascending");
-  //     isInitialRendering = false;
-  //   }
+  // if (isInitialRendering) {
+  //   // change this code !!!
+  //   sortByDate(sortedCars, "ascending");
+  //   isInitialRendering = false;
+  // }
 
   for (let car of cars) {
     // Image Part
@@ -437,134 +438,11 @@ function showCars(cars, block) {
       favorites.push(car);
     });
 
-    link.addEventListener("click", function (e) {
-      e.preventDefault();
-      displayCarBlock.classList.remove("hidden");
-      backdrop.classList.remove("hidden");
-      displayCarTitle.innerText =
-        car.brand +
-        " " +
-        car.model +
-        ", " +
-        car.year +
-        ", " +
-        car.engineVolume +
-        " L, " +
-        car.horsePower +
-        " HP, " +
-        car.mileage +
-        " KM";
-      const carImage = document.createElement("img");
-      carImage.src = car.imageLink;
-      carImage.alt = car.brand + " " + car.model;
-      displayCarImage.prepend(carImage);
-
-      const firstTableDatas = displayCarTable1.querySelectorAll(
-        "tr > td:nth-of-type(2)"
-      );
-      const secondTableDatas = displayCarTable2.querySelectorAll(
-        "tr > td:nth-of-type(2)"
-      );
-
-      fillTableDatas(car, firstTableDatas);
-      fillTableDatas(car, secondTableDatas);
-
-      if (car) return;
-    });
+    link.addEventListener("click", displayCar);
   }
 
-  const cards = document.querySelectorAll(".main__car-link");
-
-  // addCarsDisplayFunction(cars);
-  // for (let card of cards) {
-  //   const cardDesc = card.querySelector(".main__description");
-  //   cardDesc.addEventListener("click", function (e) {
-  //     e.preventDefault();
-  //     displayCarBlock.classList.remove("hidden");
-  //     backdrop.classList.remove("hidden");
-  //     const id = card.title;
-  //     const chosenCar = cars.find((car) => car.id == id);
-
-  //     buyCarBtn.addEventListener("click", function (e) {
-  //       e.preventDefault();
-  //       buyCar(id);
-  //     });
-
-  //     console.log(chosenCar);
-  //     displayCarTitle.innerText =
-  //       chosenCar.brand +
-  //       " " +
-  //       chosenCar.model +
-  //       ", " +
-  //       chosenCar.year +
-  //       ", " +
-  //       chosenCar.engineVolume +
-  //       " L, " +
-  //       chosenCar.horsePower +
-  //       " HP, " +
-  //       chosenCar.mileage +
-  //       " KM";
-  //     const carImage = document.createElement("img");
-  //     carImage.src = chosenCar.imageLink;
-  //     carImage.alt = chosenCar.brand + " " + chosenCar.model;
-  //     displayCarImage.prepend(carImage);
-
-  //     const firstTableDatas = displayCarTable1.querySelectorAll(
-  //       "tr > td:nth-of-type(2)"
-  //     );
-  //     const secondTableDatas = displayCarTable2.querySelectorAll(
-  //       "tr > td:nth-of-type(2)"
-  //     );
-
-  //     fillTableDatas(firstTableDatas);
-  //     fillTableDatas(secondTableDatas);
-
-  //     if (chosenCar) return;
-
-  // //     // FUNCTION FILL TABLE DATAS
-  //     function fillTableDatas(tableDatas) {
-  //       for (let td of tableDatas) {
-  //         let tr = td.parentNode.dataset.type;
-  //         tr = camelCase(tr);
-  //         td.innerText = chosenCar[tr];
-  //         if (td.innerText == "true") td.innerText = "Yes";
-  //         else if (td.innerText == "false") td.innerText = "No";
-  //       }
-  //     }
-
-  //     // FUNCTION BUY CAR - CHANGE THIS CODE !!!
-  //     function buyCar(id) {
-  //       const boughtCar = cars.find((car) => car.id == id);
-  //       boughtCar.isSold = true;
-  //       closeDisplayCarBlock();
-
-  //       // premiumCarsBlock.innerHTML = "";
-  //       carsBlock.innerHTML = "";
-  //       // showCars(cars, premiumCarsBlock);
-  //       showCars(cars, carsBlock);
-  //     }
-  //   });
-  // }
+  // const cards = document.querySelectorAll(".main__car-link");
 }
-
-// FUNCTION DISPLAY CAR REPORT
-// function addCarsDisplayFunction(cars) {
-//   for (let car of cars) {
-//     const cardDesc = card.querySelector(".main__description");
-//     cardDesc.addEventListener("click", function (e) {
-//       e.preventDefault();
-//       displayCarBlock.classList.remove("hidden");
-//       backdrop.classList.remove("hidden");
-//       const id = card.title;
-//       const chosenCar = cars.find((car) => car.id == id);
-
-//       buyCarBtn.addEventListener("click", function (e) {
-//         e.preventDefault();
-//         buyCar(id);
-//       });
-//     });
-//   }
-// }
 
 // FUNCTION LAUNCH APP
 function launchApp() {
