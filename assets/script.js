@@ -348,8 +348,8 @@ function showCars(cars, block) {
     // Image Part
     const link = document.createElement("a");
     link.className = "main__car-link";
-    link.title = car.id;
-    link.href = "#"; // required to change link address in the future
+    link.dataset.id = car.id;
+    link.href = "#";
     const carBlock = document.createElement("div");
     carBlock.className = "main__car";
     if (car.isSold) carBlock.classList.add("sold-car");

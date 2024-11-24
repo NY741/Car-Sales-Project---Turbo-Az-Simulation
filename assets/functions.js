@@ -10,9 +10,9 @@ function closeAddBlock() {
   addBlock.classList.add("hidden");
 }
 
-// FUCNTION DISPLAY CAR
+// FUNCTION DISPLAY CAR
 function displayCar() {
-  let car = cars.find((car) => car.id == this.title);
+  let car = cars.find((car) => car.id == this.dataset.id);
   console.log(car);
   displayCarBlock.classList.remove("hidden");
   backdrop.classList.remove("hidden");
