@@ -438,10 +438,11 @@ function showCars(cars, block) {
       favorites.push(car);
     });
 
-    link.addEventListener("click", displayCar);
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      displayCar(this);
+    });
   }
-
-  // const cards = document.querySelectorAll(".main__car-link");
 }
 
 // FUNCTION LAUNCH APP

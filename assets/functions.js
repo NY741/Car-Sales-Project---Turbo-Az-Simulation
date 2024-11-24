@@ -11,8 +11,8 @@ function closeAddBlock() {
 }
 
 // FUNCTION DISPLAY CAR
-function displayCar() {
-  let car = cars.find((car) => car.id == this.dataset.id);
+function displayCar(link) {
+  let car = cars.find((car) => car.id == link.dataset.id);
   console.log(car);
   displayCarBlock.classList.remove("hidden");
   backdrop.classList.remove("hidden");
@@ -44,7 +44,17 @@ function displayCar() {
   fillTableDatas(car, firstTableDatas);
   fillTableDatas(car, secondTableDatas);
 
-  // if (car) return;
+  buyCarBtn.addEventListener("click", function (e) {
+    buyCar(link, car);
+  });
+
+  // FUNCTION BUY CAR
+  function buyCar(link, car) {
+    closeDisplayCarBlock();
+    car.isSold = true;
+    link.querySelector(".main__car").classList.add("sold-car");
+  }
+  if (car) return;
 }
 
 // FUNCTION CLOSE DISPLAY CAR BLOCK
@@ -54,6 +64,9 @@ function closeDisplayCarBlock() {
   displayCarImage.append(closeCarBtn);
   displayCarBlock.classList.add("hidden");
   backdrop.classList.add("hidden");
+  buyCarBtn.removeEventListener("click", function (e) {
+    buyCar(link, car);
+  });
 }
 
 // FUNCTION TOGGLE MORE OPTIONS +
