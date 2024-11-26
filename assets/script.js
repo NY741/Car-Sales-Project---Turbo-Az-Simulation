@@ -3,57 +3,12 @@ launchApp();
 // EVENT LISTENERS
 addCarBtn.addEventListener("click", popUpAddCarForm);
 closeAddBlockBtn.addEventListener("click", closeAddBlock);
-addFormSubmitBtn.addEventListener("click", function (e) {
-  e.preventDefault();
-  const addBrand = document.getElementById("add-brand");
-  const addModel = document.getElementById("add-model");
-  const addColor = document.getElementById("add-color");
-  const addYear = document.getElementById("add-year");
-  const addMileage = document.getElementById("add-mileage");
-  const addBody = document.getElementById("add-body");
-  const addAmount = document.getElementById("add-amount");
-  const addCurrency = document.getElementById("add-currency");
-  const addEngineVolume = document.getElementById("add-engine-volume");
-  const addHorsePower = document.getElementById("add-horse-power");
-  const addFuel = document.getElementById("add-fuel");
-  const addGearType = document.getElementById("add-gear-type");
-  const addDrive = document.getElementById("add-drive");
-  const addSeatNum = document.getElementById("add-seat-num");
-  const addOwner = document.getElementById("add-owner");
-  const addCity = document.getElementById("add-city");
-  const addMobileNumber = document.getElementById("add-mobile-number");
-  const addIsNew = document.getElementById("add-is-new");
-  const addIsBarter = document.getElementById("add-is-barter");
-  const addIsCrashed = document.getElementById("add-is-crashed");
-  const addIsCredit = document.getElementById("add-is-credit");
-  const addIsPremium = document.getElementById("add-is-premium");
-  const addImage = document.getElementById("add-image");
-  addCar(
-    addBrand.value,
-    addModel.value,
-    addColor.value,
-    addYear.value,
-    addMileage.value,
-    addBody.value,
-    addAmount.value,
-    addCurrency.value,
-    addEngineVolume.value,
-    addHorsePower.value,
-    addFuel.value,
-    addGearType.value,
-    addDrive.value,
-    addSeatNum.value,
-    addOwner.value,
-    addCity.value,
-    addMobileNumber.value,
-    addIsNew.checked,
-    addIsBarter.checked,
-    addIsCrashed.checked,
-    addIsCredit.checked,
-    addIsPremium.checked,
-    addImage.value
-  );
-});
+document
+  .getElementById("add-car__form")
+  .addEventListener("submit", function (e) {
+    e.preventDefault();
+    addCar(this);
+  });
 displayCarCloseBtn.addEventListener("click", closeDisplayCarBlock);
 closeCarBtn.addEventListener("click", closeDisplayCarBlock);
 brand.addEventListener("change", setModelChoice);
@@ -113,31 +68,7 @@ for (let cond of conditions) {
 }
 
 // FUNCTION ADD CAR
-function addCar(
-  addBrand,
-  addModel,
-  addColor,
-  addYear,
-  addMileage,
-  addBody,
-  addAmount,
-  addCurrency,
-  addEngineVolume,
-  addHorsePower,
-  addFuel,
-  addGearType,
-  addDrive,
-  addSeatNum,
-  addOwner,
-  addCity,
-  addMobileNumber,
-  addIsNew,
-  addIsBarter,
-  addIsCrashed,
-  addIsCredit,
-  addIsPremium,
-  addImage
-) {
+function addCar(addForm) {
   const date = new Date();
   let year = date.getFullYear();
   let month = +date.getMonth() + 1;
@@ -145,41 +76,53 @@ function addCar(
   if (month.toString().length == 1) month = "0" + month;
   if (day.toString().length == 1) day = "0" + day;
   const addDate = `${year}-${month}-${day} `;
-  const newCar = new Car(
-    capitalize(addBrand),
-    capitalize(addModel),
-    addColor,
-    +addYear,
-    +addMileage,
-    addBody,
-    +addAmount,
-    addCurrency,
-    +addEngineVolume / 1000,
-    +addHorsePower,
-    addFuel,
-    addGearType,
-    addDrive,
-    +addSeatNum,
-    addDate,
-    capitalize(addOwner),
-    capitalize(addCity),
-    addMobileNumber,
-    addIsNew,
-    addIsBarter,
-    addIsCrashed,
-    addIsCredit,
-    addIsPremium,
-    false,
-    "./assets/images/mercedes_c250.jpg"
-  );
+  console.log(addForm["is-barter"].value);
 
-  console.dir(addImage);
-  cars.push(newCar);
-  carsBlock.innerHTML = "";
-  premiumCarsBlock.innerHTML = "";
-  showCars(cars, carsBlock);
-  showCars(cars, premiumCarsBlock);
-  closeAddBlock();
+  let reader = new FileReader();
+
+  reader.addEventListener("load", () => {
+    const newCar = new Car({
+      brand: capitalize(addForm.brand.value),
+      model: capitalize(addForm.model.value),
+      color: addForm.color.value,
+      year: +addForm.year.value,
+      mileage: +addForm.mileage.value,
+      body: addForm.body.value,
+      amount: +addForm.amount.value,
+      currency: addForm.currency.value,
+      engineVolume: addForm["engine-volume"].value / 1000,
+      horsePower: +addForm["horse-power"].value,
+      fuel: addForm.fuel.value,
+      gearType: addForm["gear-type"].value,
+      drive: addForm.drive.value,
+      seatNum: +addForm["seat-num"].value,
+      date: addDate,
+      owner: capitalize(addForm.owner.value),
+      city: capitalize(addForm.city.value),
+      mobileNumber: addForm["mobile-number"].value,
+      isNew: addForm["is-new"].checked,
+      isBarter: addForm["is-barter"].checked,
+      isCrashed: addForm["is-crashed"].checked,
+      isCredit: addForm["is-credit"].checked,
+      isPremium: addForm["is-premium"].checked,
+      imageLink: reader.result,
+    });
+
+    cars.push(newCar);
+    carsBlock.innerHTML = "";
+    premiumCarsBlock.innerHTML = "";
+    showCars(cars, carsBlock);
+    showCars(cars, premiumCarsBlock);
+    closeAddBlock();
+  });
+  reader.readAsDataURL(addForm.image.files[0]);
+
+  // console.dir(addForm.image.value);
+  // console.log(addForm["is-new"].value == 'on')
+  //   console.log(addForm["is-barter"].value == 'on')
+  //   console.log(addForm["is-crashed"].value == 'on')
+  //   console.log(addForm["is-credit"].value == 'on')
+  //   console.log(addForm["is-premium"].value == 'on')
 }
 
 // FUNCTION SEARCH CARS

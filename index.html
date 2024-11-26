@@ -140,8 +140,8 @@
       <form method="get" id="add-car__form">
         <div>
           <label for="add-brand">Brand:</label>
-          <select id="add-brand" required>
-            <option value="undefined" disabled selected>
+          <select id="add-brand" name="brand" required>
+            <option value="undefined" disabled>
               Select car brand
             </option>
             <option value="audi">Audi</option>
@@ -158,16 +158,18 @@
             <option value="volkswagen">Volkswagen</option>
           </select>
         </div>
+
         <div>
           <label for="add-model">Model:</label>
-          <select id="add-model" required>
-            <!-- <option value="undefined" disabled selected>Select car model</option> -->
-            <option value="C 250">C 250</option>
+          <select id="add-model" name="model" required>
+            <option value="undefined" disabled>Select car model</option>
+            <option value="c250">C250</option>
           </select>
         </div>
+
         <div>
           <label for="add-color">Color:</label>
-          <select id="add-color">
+          <select id="add-color" name="color">
             <option value="black">Black</option>
             <option value="blue">Blue</option>
             <option value="green">Green</option>
@@ -177,17 +179,33 @@
             <option value="white">White</option>
           </select>
         </div>
+
         <div>
           <label for="add-year">Year:</label>
-          <input type="number" id="add-year" min="1980" max="2024" required />
+          <input
+            type="number"
+            id="add-year"
+            name="year"
+            min="1980"
+            max="2024"
+            required
+          />
         </div>
+
         <div>
           <label for="add-mileage">Mileage:</label>
-          <input type="number" id="add-mileage" min="0" required />
+          <input
+            type="number"
+            id="add-mileage"
+            name="mileage"
+            min="0"
+            required
+          />
         </div>
+
         <div>
           <label for="add-body">Body:</label>
-          <select id="add-body">
+          <select id="add-body" name="body">
             <option value="all">All bodies</option>
             <option value="cabriolet">Cabriolet</option>
             <option value="coupe">Coupe</option>
@@ -204,34 +222,45 @@
         </div>
         <div>
           <label for="add-amount">Price Amount:</label>
-          <input type="number" id="add-amount" required />
+          <input type="number" id="add-amount" name="amount" required />
         </div>
+
         <div>
           <label for="add-currency">Price Currency:</label>
-          <select id="add-currency" required>
+          <select id="add-currency" name="currency" required>
             <option value="AZN">AZN</option>
             <option value="EUR">EUR</option>
             <option value="USD">USD</option>
           </select>
         </div>
+
         <div>
           <label for="add-engine-volume">Engine Volume:</label>
           <input
             type="number"
             id="add-engine-volume"
+            name="engine-volume"
             min="1000"
             max="16000"
             step="100"
             required
           />
         </div>
+
         <div>
           <label for="add-horse-power">Horse Power:</label>
-          <input type="number" id="add-horse-power" min="0" max="3000" />
+          <input
+            type="number"
+            id="add-horse-power"
+            name="horse-power"
+            min="0"
+            max="3000"
+          />
         </div>
+
         <div>
           <label for="add-fuel">Fuel Type:</label>
-          <select id="add-fuel">
+          <select id="add-fuel" name="fuel">
             <option value="gas">Gas</option>
             <option value="diesel">Diesel</option>
             <option value="electro">Electro</option>
@@ -239,32 +268,43 @@
             <option value="plug-in hybrid">Plug-In Hybrid</option>
           </select>
         </div>
+
         <div>
           <label for="add-gear-type">Gear Type:</label>
-          <select id="add-gear-type">
+          <select id="add-gear-type" name="gear-type">
             <option value="auto">Auto</option>
             <option value="manual">Manual</option>
           </select>
         </div>
+
         <div>
           <label for="add-drive">Wheel Drive Type:</label>
-          <select id="add-drive">
+          <select id="add-drive" name="drive">
             <option value="front">Front</option>
             <option value="rear">Rear</option>
             <option value="full">Full</option>
           </select>
         </div>
+
         <div>
           <label for="add-seat-num">Seat Number</label>
-          <input type="num" id="add-seat-num" min="1" max="100" />
+          <input
+            type="num"
+            id="add-seat-num"
+            name="seat-num"
+            min="1"
+            max="100"
+          />
         </div>
+
         <div>
           <label for="add-owner">Owner Name:</label>
-          <input type="text" id="add-owner" />
+          <input type="text" id="add-owner" name="owner" />
         </div>
+
         <div>
           <label for="add-city">City</label>
-          <select id="add-city" required>
+          <select id="add-city" name="city" required>
             <option value="baku">Baku</option>
             <option value="ganja">Ganja</option>
             <option value="minqechevir">Minqechevir</option>
@@ -272,37 +312,48 @@
             <option value="yevlax">Yevlax</option>
           </select>
         </div>
+
         <div>
           <label for="add-mobile-number">Mobile Number (+994):</label>
-          <input type="number" id="add-mobile-number" max="709999999" />
+          <input
+            type="number"
+            id="add-mobile-number"
+            name="mobile-number"
+            max="709999999"
+          />
         </div>
+
         <div>
           <label for="add-is-new">Car is New?</label>
-          <input type="checkbox" id="add-is-new" />
+          <input type="checkbox" id="add-is-new" name="is-new" />
         </div>
+
         <div>
           <label for="add-is-barter">Barter is applicable?</label>
-          <input type="checkbox" id="add-is-barter" />
+          <input type="checkbox" id="add-is-barter" name="is-barter" />
         </div>
+
         <div>
           <label for="add-is-crashed">Car has been crashed?</label>
-          <input type="checkbox" id="add-is-crashed" />
+          <input type="checkbox" id="add-is-crashed" name="is-crashed" />
         </div>
+
         <div>
           <label for="add-is-credit">Credit pay is applicable?</label>
-          <input type="checkbox" id="add-is-credit" />
+          <input type="checkbox" id="add-is-credit" name="is-credit" />
         </div>
+
         <div>
           <label for="add-is-premium">Make this add premium</label>
-          <input type="checkbox" id="add-is-premium" />
+          <input type="checkbox" id="add-is-premium" name="is-premium" />
         </div>
+
         <div>
           <label for="add-image"></label>
-          <input type="file" id="add-image" />
+          <input type="file" id="add-image" name="image" />
         </div>
-        <button class="button" type="submit" id="add-block__submit-button">
-          Create
-        </button>
+
+        <button class="button" id="add-block__submit-button">Create</button>
         <button class="button" type="reset">Reset</button>
       </form>
     </div>

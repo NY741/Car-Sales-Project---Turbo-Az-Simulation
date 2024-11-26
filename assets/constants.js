@@ -6,7 +6,6 @@ const carsBlock = document.querySelector(".main__cars");
 const premiumCarsBlock = document.querySelector(".main__premium-cars");
 const addBlock = document.querySelector(".add-car");
 const addForm = document.getElementById("add-car__form");
-const addFormSubmitBtn = document.getElementById("add-block__submit-button");
 const displayCarBlock = document.querySelector(".display-car");
 const displayCarTitle = displayCarBlock.querySelector(".display-car__title");
 const displayCarContainer = displayCarBlock.querySelector(
@@ -82,8 +81,10 @@ let sortYearType = "ascending";
 let sortedCars = cars;
 
 // Other Variables
-let allBrands;
 let favorites = [];
 let isInitialRendering = true;
 let convertUsdToAzn = 1.7;
 let convertEurToAzn = 1.85;
+
+// Variables for Options
+
