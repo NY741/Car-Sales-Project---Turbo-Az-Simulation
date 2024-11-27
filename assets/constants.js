@@ -37,7 +37,7 @@ const saleType = document.getElementById("sale");
 const body = document.getElementById("body");
 const fuel = document.getElementById("fuel");
 const drive = document.getElementById("drive");
-const gearType = document.getElementById("gear-type");
+const gear = document.getElementById("gear");
 const color = document.getElementById("color");
 
 // Search Form Elements - Double (Min and Max)
@@ -80,11 +80,18 @@ let sortPriceType = "ascending";
 let sortYearType = "ascending";
 let sortedCars = cars;
 
+// Variables for Options
+let allBrands;
+let allCities;
+let allColors;
+let allCurrencies;
+let allBodies;
+let allFuelTypes;
+let allDriveTypes;
+let allGearTypes;
+
 // Other Variables
 let favorites = [];
-let isInitialRendering = true;
 let convertUsdToAzn = 1.7;
 let convertEurToAzn = 1.85;
-
-// Variables for Options
-
+let isInitialRendering = true;

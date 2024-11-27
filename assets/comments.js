@@ -100,3 +100,37 @@
 // const addIsCredit = document.getElementById("add-is-credit");
 // const addIsPremium = document.getElementById("add-is-premium");
 // const addImage = document.getElementById("add-image");
+
+// // FUNCTION GET BRANDS +
+// function getBrands(array) {
+//   allBrands = new Set();
+//   for (let item of array) {
+//     const carName = item.brand;
+//     allBrands.add(carName);
+//   }
+//   allBrands = Array.from(allBrands).sort();
+//   for (let carName of allBrands) {
+//     const option = document.createElement("option");
+//     option.innerText = carName;
+//     option.value = carName.toLowerCase();
+//     brand.append(option);
+//   }
+// }
+
+// let allCities = ['Baku', 'Ganja', 'Sumqayit', 'Mingachevir', 'Shaki'];
+// let allCurrencies = ['AZN', 'EUR', 'USD']
+// let allBodies = ["cabriolet", "coupe", "hatchback", "liftback", "limousine", "pickup", "roadster", "sedan", "suv", "sportscar", "universal"]
+
+// "all">All bodies</option>
+// "cabriolet">Cabriolet</option>
+// "coupe">Coupe</option>
+// "hatchback">Hatchback</option>
+// "liftback">Liftback</option>
+// "limousine">Limousine</option>
+// "pickup">Pickup</option>
+// "roadster">Roadster</option>
+// "sedan">Sedan</option>
+// "suv">SUV</option>
+// "sportscar">Sportscar</option>
+// "universal">Universal</option>
+

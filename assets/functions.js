@@ -108,20 +108,25 @@ function checkMinMaxFields() {
   return true;
 }
 
-// FUNCTION GET BRANDS +
-function getBrands(array) {
-  allBrands = new Set();
-  for (let item of array) {
-    const carName = item.brand;
-    allBrands.add(carName);
+// FUNCTION GET OPTIONS +
+function getOptions(array, type) {
+  let allOptions = new Set();
+  for (let car of array) {
+    const option = car[type];
+    allOptions.add(option);
   }
-  allBrands = Array.from(allBrands).sort();
-  for (let carName of allBrands) {
+  allOptions = Array.from(allOptions).sort();
+  return allOptions;
+}
+
+// FUNCTION SET OPTIONS +
+function setOptions(options, select) {
+  options.forEach((opt) => {
     const option = document.createElement("option");
-    option.innerText = carName;
-    option.value = carName.toLowerCase();
-    brand.append(option);
-  }
+    option.innerText = capitalize(opt);
+    option.value = opt.toLowerCase();
+    select.append(option);
+  });
 }
 
 // FUNCTION SET MODEL CHOICE +
@@ -202,7 +207,7 @@ function setColorOptions() {
   });
 }
 
-// FUNCTION CHECK SORTED TYPE
+// FUNCTION CHECK SORTED TYPE +
 function checkSortedType(direction) {
   const sortButtons = sortForm.getElementsByClassName("sort-button");
   Array.from(sortButtons).forEach((button) => {

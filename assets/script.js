@@ -38,7 +38,7 @@ searchForm.addEventListener("submit", function (e) {
     color.value,
     fuel.value,
     drive.value,
-    gearType.value,
+    gear.value,
     minEngineVolume.value / 1000,
     maxEngineVolume.value / 1000,
     minHorsePower.value,
@@ -93,7 +93,7 @@ function addCar(addForm) {
       engineVolume: addForm["engine-volume"].value / 1000,
       horsePower: +addForm["horse-power"].value,
       fuel: addForm.fuel.value,
-      gearType: addForm["gear-type"].value,
+      gear: addForm.gear.value,
       drive: addForm.drive.value,
       seatNum: +addForm["seat-num"].value,
       date: addDate,
@@ -141,7 +141,7 @@ function searchCars(
   color,
   fuel,
   drive,
-  gearType,
+  gear,
   minEngineVolume,
   maxEngineVolume,
   minHorsePower,
@@ -388,10 +388,29 @@ function showCars(cars, block) {
   }
 }
 
+// FUNCTION GET AND SET OPTIONS
+function getSetOptions() {
+  options = [
+    [allBrands, brand, "brand"],
+    [allCities, city, "city"],
+    [allColors, color, "color"],
+    [allCurrencies, currency, "currency"],
+    [allBodies, body, "body"],
+    [allFuelTypes, fuel, "fuel"],
+    [allDriveTypes, drive, "drive"],
+    [allGearTypes, gear, "gear"],
+  ];
+
+  options.forEach((option) => {
+    option[0] = getOptions(cars, option[2]);
+    setOptions(option[0], option[1]);
+  });
+}
+
 // FUNCTION LAUNCH APP
 function launchApp() {
+  getSetOptions();
   setColorOptions();
-  getBrands(cars);
   showCars(cars, carsBlock);
   showCars(cars, premiumCarsBlock);
 }
