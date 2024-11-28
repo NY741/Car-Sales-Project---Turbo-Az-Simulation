@@ -73,14 +73,15 @@ function closeDisplayCarBlock() {
 function toggleMoreOptions() {
   const extendedOptions = document.getElementsByClassName("extended-option");
   showMoreBtn.classList.toggle("active");
-  if (showMoreBtn.classList.contains("active"))
-    showMoreBtn.innerText = "Hide more search options";
-  else {
-    showMoreBtn.innerText = "Show more search options";
-  }
-  for (let option of extendedOptions) {
-    option.classList.toggle("hidden");
-  }
+  showMoreBtn.innerText = showMoreBtn.classList.contains("active")
+    ? "Hide more search options"
+    : "Show more search options";
+  // for (let option of extendedOptions) {
+  //   option.classList.toggle("hidden");
+  // }
+  Array.from(extendedOptions).forEach((option) =>
+    option.classList.toggle("hidden")
+  );
 }
 
 // FUNCTION TOGGLE FAVORITE +
@@ -229,6 +230,7 @@ function checkSortedType(direction) {
 
 // FUNCTION SORT BY DATE +
 function sortByDate(array, direction) {
+  console.log("Tested sort by date");
   array.sort((a, b) => {
     if (direction == "ascending") {
       if (a.date > b.date) return 1;

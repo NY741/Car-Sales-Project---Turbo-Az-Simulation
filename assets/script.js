@@ -99,7 +99,7 @@ function addCar(addForm) {
       date: addDate,
       owner: capitalize(addForm.owner.value),
       city: capitalize(addForm.city.value),
-      mobileNumber: addForm["mobile-number"].value,
+      phone: addForm["mobile-number"].value,
       isNew: addForm["is-new"].checked,
       isBarter: addForm["is-barter"].checked,
       isCrashed: addForm["is-crashed"].checked,
@@ -281,12 +281,6 @@ function showCars(cars, block) {
       return car.isPremium;
     });
 
-  // if (isInitialRendering) {
-  //   // change this code !!!
-  //   sortByDate(sortedCars, "ascending");
-  //   isInitialRendering = false;
-  // }
-
   for (let car of cars) {
     // Image Part
     const link = document.createElement("a");
@@ -413,4 +407,8 @@ function launchApp() {
   setColorOptions();
   showCars(cars, carsBlock);
   showCars(cars, premiumCarsBlock);
+  setTimeout(() => {
+    sortByDate(sortedCars, "descending");
+    isInitialRendering = false;
+  }, 2000);
 }

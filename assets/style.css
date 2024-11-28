@@ -46,10 +46,6 @@ nav a:hover {
   padding: 0;
 }
 
-.flexbox.hidden {
-  display: none;
-}
-
 h2 {
   font-size: 12pt;
   letter-spacing: 1px;
@@ -645,3 +641,12 @@ p.main__address {
 .hidden {
   display: none;
 }
+
+.flexbox.hidden {
+  display: none;
+}
+
+/* .active {
+  color: #fff;
+  background-color: #175;
+} */

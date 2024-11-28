@@ -103,8 +103,8 @@
                 <td>Owner Name</td>
                 <td></td>
               </tr>
-              <tr data-type="mobile-number">
-                <td>Mobile number</td>
+              <tr data-type="phone">
+                <td>Phone number</td>
                 <td></td>
               </tr>
               <tr data-type="is-barter">
@@ -312,13 +312,8 @@
         </div>
 
         <div>
-          <label for="add-mobile-number">Mobile Number (+994):</label>
-          <input
-            type="number"
-            id="add-mobile-number"
-            name="mobile-number"
-            max="709999999"
-          />
+          <label for="add-phone">Mobile Number (+994):</label>
+          <input type="number" id="add-phone" name="phone" max="709999999" />
         </div>
 
         <div>
@@ -561,18 +556,14 @@
               </div>
 
               <div class="search-form__item extended-option hidden">
-                <select
-                  name="gear"
-                  id="gear"
-                  class="full-block main-element"
-                >
+                <select name="gear" id="gear" class="full-block main-element">
                   <option value="all">All gear types</option>
                   <!-- <option value="auto">Auto</option>
                   <option value="manual">Manual</option> -->
                 </select>
               </div>
 
-              <div class="search-form__item extended-option hidden flexbox">
+              <div class="search-form__item extended-option flexbox hidden">
                 <input
                   name="engine-volume"
                   id="engine-volume-min"
@@ -595,7 +586,7 @@
                 />
               </div>
 
-              <div class="search-form__item extended-option hidden flexbox">
+              <div class="search-form__item extended-option flexbox hidden">
                 <input
                   name="horse-power"
                   id="horse-power-min"
@@ -618,7 +609,7 @@
                 />
               </div>
 
-              <div class="search-form__item extended-option hidden flexbox">
+              <div class="search-form__item extended-option flexbox hidden">
                 <input
                   name="mileage"
                   id="mileage-min"
@@ -654,7 +645,7 @@
                 />
               </div>
 
-              <div class="search-form__item extended-option hidden flexbox">
+              <div class="search-form__item extended-option flexbox hidden">
                 <input
                   class="half-block"
                   id="not-crashed"
@@ -700,7 +691,7 @@
             <form id="sort-form">
               <button
                 id="sort-date"
-                class="button sort-button"
+                class="button sort-button chosen-sort"
                 data-sort="date"
               >
                 Report Date <small>(to highest)</small>
