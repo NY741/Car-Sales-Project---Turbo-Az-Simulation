@@ -32,7 +32,6 @@ class Car {
   isCredit = false;
   isPremium = false;
   isSold = false;
-
   isFavorite = false;
 }
 

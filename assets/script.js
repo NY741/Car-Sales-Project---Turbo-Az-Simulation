@@ -11,7 +11,16 @@ document
   });
 displayCarCloseBtn.addEventListener("click", closeDisplayCarBlock);
 closeCarBtn.addEventListener("click", closeDisplayCarBlock);
-brand.addEventListener("change", setModelChoice);
+// brand.addEventListener("change", setModelChoice);
+brand.addEventListener("change", function (e) {
+  e.preventDefault();
+  setModelChoice(this, model);
+});
+addBrand.addEventListener("change", function (e) {
+  e.preventDefault();
+  setModelChoice(this, addModel);
+});
+
 minPriceAm.addEventListener("change", setCurrChoice);
 maxPriceAm.addEventListener("change", setCurrChoice);
 showMoreBtn.addEventListener("click", function (e) {
@@ -76,7 +85,7 @@ function addCar(addForm) {
   if (month.toString().length == 1) month = "0" + month;
   if (day.toString().length == 1) day = "0" + day;
   const addDate = `${year}-${month}-${day} `;
-  console.log(addForm["is-barter"].value);
+  // console.log(addForm["is-barter"].value);
 
   let reader = new FileReader();
 
@@ -99,7 +108,7 @@ function addCar(addForm) {
       date: addDate,
       owner: capitalize(addForm.owner.value),
       city: capitalize(addForm.city.value),
-      phone: addForm["mobile-number"].value,
+      phone: addForm.phone.value,
       isNew: addForm["is-new"].checked,
       isBarter: addForm["is-barter"].checked,
       isCrashed: addForm["is-crashed"].checked,
@@ -116,13 +125,6 @@ function addCar(addForm) {
     closeAddBlock();
   });
   reader.readAsDataURL(addForm.image.files[0]);
-
-  // console.dir(addForm.image.value);
-  // console.log(addForm["is-new"].value == 'on')
-  //   console.log(addForm["is-barter"].value == 'on')
-  //   console.log(addForm["is-crashed"].value == 'on')
-  //   console.log(addForm["is-credit"].value == 'on')
-  //   console.log(addForm["is-premium"].value == 'on')
 }
 
 // FUNCTION SEARCH CARS

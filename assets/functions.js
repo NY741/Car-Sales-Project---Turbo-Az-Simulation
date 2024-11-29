@@ -131,20 +131,20 @@ function setOptions(options, select) {
 }
 
 // FUNCTION SET MODEL CHOICE +
-function setModelChoice() {
-  model.setAttribute("disabled", "true");
-  model.innerHTML = "";
+function setModelChoice(brandSelect, modelSelect) {
+  modelSelect.setAttribute("disabled", "true");
+  modelSelect.innerHTML = "";
   const option = document.createElement("option");
-  option.innerText = "All models";
+  option.innerText = brandSelect == brand ? "All models" : "Select car model";
   option.value = "all";
   option.selected = "true";
-  model.append(option);
+  modelSelect.append(option);
 
-  if (brand.value != "all") {
-    model.removeAttribute("disabled");
+  if (brandSelect.value != "all") {
+    modelSelect.removeAttribute("disabled");
     let models = new Set();
     for (let car of cars) {
-      if (car.brand.toLowerCase() == brand.value) models.add(car.model);
+      if (car.brand.toLowerCase() == brandSelect.value) models.add(car.model);
     }
     models = Array.from(models).sort();
 
@@ -152,7 +152,7 @@ function setModelChoice() {
       const option = document.createElement("option");
       option.value = carModel;
       option.innerText = carModel;
-      model.append(option);
+      modelSelect.append(option);
     }
   }
 }
