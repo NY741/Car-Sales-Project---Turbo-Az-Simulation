@@ -13,7 +13,6 @@ function closeAddBlock() {
 // FUNCTION DISPLAY CAR
 function displayCar(link) {
   let car = cars.find((car) => car.id == link.dataset.id);
-  console.log(car);
   displayCarBlock.classList.remove("hidden");
   backdrop.classList.remove("hidden");
   displayCarTitle.innerText =
@@ -86,7 +85,6 @@ function toggleMoreOptions() {
 
 // FUNCTION TOGGLE FAVORITE +
 function toggleFavorite(car, sign) {
-  console.log(car, sign);
   if (car.isFavorite) {
     car.isFavorite = false;
     sign.src = "./assets/images/sign-heart-simple.png";
@@ -127,6 +125,25 @@ function setOptions(options, select) {
     option.innerText = capitalize(opt);
     option.value = opt.toLowerCase();
     select.append(option);
+  });
+}
+
+// FUNCTION GET AND SET OPTIONS
+function getSetOptions() {
+  options = [
+    [allBrands, brand, "brand"],
+    [allCities, city, "city"],
+    [allColors, color, "color"],
+    [allCurrencies, currency, "currency"],
+    [allBodies, body, "body"],
+    [allFuelTypes, fuel, "fuel"],
+    [allDriveTypes, drive, "drive"],
+    [allGearTypes, gear, "gear"],
+  ];
+
+  options.forEach((option) => {
+    option[0] = getOptions(cars, option[2]);
+    setOptions(option[0], option[1]);
   });
 }
 
@@ -230,7 +247,6 @@ function checkSortedType(direction) {
 
 // FUNCTION SORT BY DATE +
 function sortByDate(array, direction) {
-  console.log("Tested sort by date");
   array.sort((a, b) => {
     if (direction == "ascending") {
       if (a.date > b.date) return 1;
@@ -339,6 +355,14 @@ function sortByYear(array, direction) {
   checkSortedType(direction);
   carsBlock.innerHTML = "";
   showCars(array, carsBlock);
+}
+
+// FUNCTION NORMALIZE SORT BUTTONS
+function normalizeSortButtons() {
+  sortNameBtn.className =
+    sortPriceBtn.className =
+    sortYearBtn.className =
+      "button sort-button";
 }
 
 // FUNCTION CAMEL CASE

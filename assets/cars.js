@@ -521,7 +521,7 @@ const cars = [
     city: "Baku",
     phone: "994508765432",
     isNew: false,
-    isBarter: false,
+    isBarter: true,
     isCrashed: true,
     isCredit: false,
     isPremium: false,

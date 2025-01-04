@@ -134,3 +134,19 @@
 // "sportscar">Sportscar</option>
 // "universal">Universal</option>
 
+// const arrCars:string[] = ['Bmv','mirs']
+
+// arrCars.push(3)
+
+// for (let i = 0; i < minMaxFields.length; i++) {
+//   if (i === 0) continue;
+//   if (!minMaxFields[i][0].value) minMaxFields[i][0] = 0;
+//   if (!minMaxFields[i][1].value) minMaxFields[i][1] = Infinity;
+//   sortedCars = sortedCars.filter((car) => {
+//     console.log(car[triggers[i]]);
+//     return (
+//       car[triggers[i]] >= +minMaxFields[i][0] &&
+//       car[triggers[i]] <= +minMaxFields[i][1]
+//     );
+//   });
+// }

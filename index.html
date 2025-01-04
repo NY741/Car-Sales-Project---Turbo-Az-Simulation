@@ -140,7 +140,7 @@
       <form method="get" id="add-car__form">
         <div>
           <label for="add-brand">Brand:</label>
-          <select id="add-brand" name="brand" title="Select car brand" required>
+          <select id="add-brand" name="brand" title="Select car brand">
             <option value="undefined">Select car brand</option>
             <option value="audi">Audi</option>
             <option value="bmw">BMW</option>
@@ -159,9 +159,8 @@
 
         <div>
           <label for="add-model">Model:</label>
-          <select id="add-model" name="model" required>
+          <select id="add-model" name="model">
             <option value="undefined">Select car model</option>
-            <!-- <option value="c250">C250</option> -->
           </select>
         </div>
 
@@ -186,19 +185,12 @@
             name="year"
             min="1980"
             max="2024"
-            required
           />
         </div>
 
         <div>
           <label for="add-mileage">Mileage:</label>
-          <input
-            type="number"
-            id="add-mileage"
-            name="mileage"
-            min="0"
-            required
-          />
+          <input type="number" id="add-mileage" name="mileage" min="0" />
         </div>
 
         <div>
@@ -220,12 +212,12 @@
         </div>
         <div>
           <label for="add-amount">Price Amount:</label>
-          <input type="number" id="add-amount" name="amount" required />
+          <input type="number" id="add-amount" name="amount" />
         </div>
 
         <div>
           <label for="add-currency">Price Currency:</label>
-          <select id="add-currency" name="currency" required>
+          <select id="add-currency" name="currency">
             <option value="AZN">AZN</option>
             <option value="EUR">EUR</option>
             <option value="USD">USD</option>
@@ -241,7 +233,6 @@
             min="1000"
             max="16000"
             step="100"
-            required
           />
         </div>
 
@@ -302,7 +293,7 @@
 
         <div>
           <label for="add-city">City</label>
-          <select id="add-city" name="city" required>
+          <select id="add-city" name="city">
             <option value="baku">Baku</option>
             <option value="ganja">Ganja</option>
             <option value="minqechevir">Minqechevir</option>
@@ -343,7 +334,8 @@
 
         <div>
           <label for="add-image"></label>
-          <input type="file" id="add-image" name="image" />
+          <input type="file" id="add-image" name="image" required />
+          <img src="" class="add-image-display hidden" alt="Loaded image" />
         </div>
 
         <button class="button" id="add-block__submit-button">Create</button>
@@ -380,7 +372,11 @@
           </ul>
         </div>
         <div class="navigation-header__add">
-          <button id="add-car-button" class="button button-special">
+          <button
+            id="add-car-button"
+            class="button button-special"
+            accesskey="n"
+          >
             Yeni elan
           </button>
         </div>

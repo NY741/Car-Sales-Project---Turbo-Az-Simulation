@@ -409,7 +409,9 @@ p.main__address {
   overflow: hidden;
   vertical-align: top;
   text-align: center;
-  background-color: #f8f8f8;
+  color: #933;
+  border-color: #933;
+  background-color: #fee;
 }
 
 .search-form__item input[type="radio"][name="condition"][value="all"]:after {
@@ -624,6 +626,11 @@ p.main__address {
   width: 200px;
   height: 20px;
   margin-left: 0;
+}
+
+.add-image-display {
+  width: 30px;
+  height: 20px;
 }
 
 /* BANNER */

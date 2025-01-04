@@ -85,11 +85,12 @@ function addCar(addForm) {
   if (month.toString().length == 1) month = "0" + month;
   if (day.toString().length == 1) day = "0" + day;
   const addDate = `${year}-${month}-${day} `;
-  // console.log(addForm["is-barter"].value);
 
   let reader = new FileReader();
-
   reader.addEventListener("load", () => {
+    console.log(reader.result);
+    addImgDisplay.src = reader.result;
+    addImgDisplay.classList.remove("hidden");
     const newCar = new Car({
       brand: capitalize(addForm.brand.value),
       model: capitalize(addForm.model.value),
@@ -123,6 +124,7 @@ function addCar(addForm) {
     showCars(cars, carsBlock);
     showCars(cars, premiumCarsBlock);
     closeAddBlock();
+    addImgDisplay.classList.add("hidden");
   });
   reader.readAsDataURL(addForm.image.files[0]);
 }
@@ -151,23 +153,20 @@ function searchCars(
   minMileage,
   maxMileage
 ) {
-  // sortDateBtn.className =
-  sortNameBtn.className =
-    sortPriceBtn.className =
-    sortYearBtn.className =
-      "button sort-button";
+  normalizeSortButtons();
   sortedCars = cars;
-  const mainElements = document.querySelectorAll("#search-form .main-element");
-  // Sort only favorites
   if (favorite.checked) sortedCars = sortedCars.filter((car) => car.isFavorite);
-  // Sort only not crashed
   if (notCrashed.checked)
     sortedCars = sortedCars.filter((car) => !car.isCrashed);
+  const mainElements = document.querySelectorAll("#search-form .main-element");
+  console.log(mainElements);
+
   for (let element of mainElements) {
     let name = element.name;
-    let value = element.value;
     name = camelCase(name);
+    let value = element.value;
     if (name == "seatNum" && value == "") value = "all";
+
     if (value !== "all") {
       sortedCars = sortedCars.filter((car) => {
         if (name == "favorite") return car.isFavorite; // favorite
@@ -185,6 +184,9 @@ function searchCars(
           // currency
           let minAmount = +minPriceAm;
           let maxAmount = +maxPriceAm;
+          console.log(minAmount);
+          console.log(maxAmount);
+          console.log(sortedCars);
           if (minPriceAm == "") minAmount = 0;
           if (maxPriceAm == "") maxAmount = Infinity;
           if (conversion.checked) {
@@ -197,7 +199,8 @@ function searchCars(
                 minAmount /= convertEurToAzn;
                 maxAmount /= convertEurToAzn;
               }
-            } else if (currency == "EUR") {
+            }
+            if (currency == "EUR") {
               if (car.currency == "USD") {
                 minAmount = (minAmount / convertUsdToAzn) * convertEurToAzn;
                 maxAmount = (maxAmount / convertUsdToAzn) * convertEurToAzn;
@@ -206,7 +209,8 @@ function searchCars(
                 minAmount = minAmount * convertEurToAzn;
                 maxAmount = maxAmount * convertEurToAzn;
               }
-            } else if (currency == "USD") {
+            }
+            if (currency == "USD") {
               if (car.currency == "EUR") {
                 minAmount = (minAmount / convertUsdToAzn) * convertEurToAzn;
                 maxAmount = (maxAmount / convertUsdToAzn) * convertEurToAzn;
@@ -230,19 +234,6 @@ function searchCars(
       });
     }
   }
-
-  // for (let i = 0; i < minMaxFields.length; i++) {
-  //   if (i === 0) continue;
-  //   if (!minMaxFields[i][0].value) minMaxFields[i][0] = 0;
-  //   if (!minMaxFields[i][1].value) minMaxFields[i][1] = Infinity;
-  //   sortedCars = sortedCars.filter((car) => {
-  //     console.log(car[triggers[i]]);
-  //     return (
-  //       car[triggers[i]] >= +minMaxFields[i][0] &&
-  //       car[triggers[i]] <= +minMaxFields[i][1]
-  //     );
-  //   });
-  // }
 
   // Sort between Min Year and Max Year
   sortedCars = sortedCars.filter((car) => {
@@ -276,6 +267,131 @@ function searchCars(
   showCars(sortedCars, carsBlock);
 }
 
+// FUNCTION PREPARE CAR
+function prepareCar(car, block) {
+  // Image Part
+  const link = document.createElement("a");
+  link.className = "main__car-link";
+  link.dataset.id = car.id;
+  link.href = "#";
+  const carBlock = document.createElement("div");
+  carBlock.className = "main__car";
+  if (car.isSold) carBlock.classList.add("sold-car");
+  const carImageBlock = document.createElement("div");
+  carImageBlock.className = "main__img";
+  const carImage = document.createElement("img");
+  carImage.src = car.imageLink;
+  carImage.alt = car.brand + " " + car.model;
+  carImageBlock.append(carImage);
+  // Description Part
+  const description = document.createElement("div");
+  description.className = "main__description";
+  const price = document.createElement("p");
+  price.className = "main__price";
+  price.innerText = car.amount + "  " + car.currency;
+  const name = document.createElement("p");
+  name.className = "main__name";
+  name.innerText = car.brand + " " + car.model;
+  const base = document.createElement("p");
+  base.className = "main__base";
+  base.innerText =
+    car.year +
+    ", " +
+    car.engineVolume.toFixed(1) +
+    " L, " +
+    car.mileage +
+    " KM";
+
+  const reportDate = new Date(car.date);
+  const today = new Date();
+  const diff = today - reportDate;
+  const diffInDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+  const address = document.createElement("p");
+  address.className = "main__address";
+  let dayIndex = diffInDays == 0 ? "Today" : diffInDays + " days ago";
+  address.innerText = car.city + ", " + dayIndex;
+  description.append(price, name, base, address);
+  carBlock.append(carImageBlock, description);
+
+  // Icons Part
+  const favoriteSign = document.createElement("img");
+  favoriteSign.className = "main__favorite-sign sign";
+  if (car.isFavorite) {
+    favoriteSign.src = "./assets/images/sign-heart-red.png";
+    favoriteSign.alt = "Favoritlərdən çıxart";
+  } else {
+    favoriteSign.src = "./assets/images/sign-heart-simple.png";
+    favoriteSign.alt = "Elanı favorit et";
+  }
+  carBlock.append(favoriteSign);
+  addBadge(car, carBlock);
+  link.append(carBlock);
+  block.append(link);
+  favoriteSign.addEventListener("click", function (e) {
+    e.preventDefault();
+    toggleFavorite(car, this);
+    favorites.push(car);
+  });
+
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
+    displayCar(this);
+  });
+}
+
+// FUNCTION ADD NEW BADGE
+function addNewBadge(car, carBlock) {
+  if (car.isNew) {
+    const newSign = document.createElement("img");
+    newSign.className = "main__new-sign sign";
+    newSign.src = "./assets/images/sign-new.png";
+    newSign.alt = "Avtomobil yenidir";
+    carBlock.append(newSign);
+  }
+}
+
+// FUNCTION ADD BARTER BADGE
+function addBarterBadge(car, carBlock) {
+  if (car.isBarter) {
+    const barterSign = document.createElement("img");
+    barterSign.className = "main__barter-sign sign";
+    barterSign.src = "./assets/images/sign-refresh.png";
+    barterSign.alt = "Avtomobili barter etmək mümkündür";
+    carBlock.append(barterSign);
+  }
+}
+
+// FUNCTION ADD CREDIT BADGE
+function addCreditBadge(car, carBlock) {
+  if (car.isCredit) {
+    const creditSign = document.createElement("img");
+    creditSign.className = "main__credit-sign sign";
+    creditSign.src = "./assets/images/sign-credit.png";
+    creditSign.alt = "Avtomobili kredit ilə almaq mümkündür";
+    carBlock.append(creditSign);
+  }
+}
+
+// FUNCTION ADD PREMIUM BADGE
+function addPremiumBadge(car, carBlock) {
+  if (car.isPremium) {
+    const premiumSign = document.createElement("img");
+    premiumSign.className = "main__crown-sign sign";
+    premiumSign.src = "./assets/images/sign-crown.png";
+    premiumSign.alt = "Premium (VIP) elandır";
+    carBlock.append(premiumSign);
+  }
+}
+
+// FUNCTION ADD BADGE
+function addBadge(car, carBlock) {
+  if (car.isNew) addNewBadge(car, carBlock);
+  if (car.isBarter) addBarterBadge(car, carBlock);
+  if (car.isCredit) addCreditBadge(car, carBlock);
+  if (car.isPremium) addPremiumBadge(car, carBlock);
+}
+
 // FUNCTION SHOW CARS
 function showCars(cars, block) {
   if (block == premiumCarsBlock)
@@ -283,124 +399,11 @@ function showCars(cars, block) {
       return car.isPremium;
     });
 
+  // const carsForShow = cars.filter((car) => true);
+
   for (let car of cars) {
-    // Image Part
-    const link = document.createElement("a");
-    link.className = "main__car-link";
-    link.dataset.id = car.id;
-    link.href = "#";
-    const carBlock = document.createElement("div");
-    carBlock.className = "main__car";
-    if (car.isSold) carBlock.classList.add("sold-car");
-    const carImageBlock = document.createElement("div");
-    carImageBlock.className = "main__img";
-    const carImage = document.createElement("img");
-    carImage.src = car.imageLink;
-    carImage.alt = car.brand + " " + car.model;
-    carImageBlock.append(carImage);
-    // Description Part
-    const description = document.createElement("div");
-    description.className = "main__description";
-    const price = document.createElement("p");
-    price.className = "main__price";
-    price.innerText = car.amount + "  " + car.currency;
-    const name = document.createElement("p");
-    name.className = "main__name";
-    name.innerText = car.brand + " " + car.model;
-    const base = document.createElement("p");
-    base.className = "main__base";
-    base.innerText =
-      car.year +
-      ", " +
-      car.engineVolume.toFixed(1) +
-      " L, " +
-      car.mileage +
-      " KM";
-
-    const reportDate = new Date(car.date);
-    const today = new Date();
-    const diff = today - reportDate;
-    const diffInDays = Math.floor(diff / (1000 * 60 * 60 * 24));
-
-    const address = document.createElement("p");
-    address.className = "main__address";
-    let dayIndex = diffInDays == 0 ? "Today" : diffInDays + " days ago";
-    address.innerText = car.city + ", " + dayIndex;
-    description.append(price, name, base, address);
-    carBlock.append(carImageBlock, description);
-
-    // Icons Part
-    const favoriteSign = document.createElement("img");
-    favoriteSign.className = "main__favorite-sign sign";
-    if (car.isFavorite) {
-      console;
-      favoriteSign.src = "./assets/images/sign-heart-red.png";
-      favoriteSign.alt = "Favoritlərdən çıxart";
-    } else {
-      favoriteSign.src = "./assets/images/sign-heart-simple.png";
-      favoriteSign.alt = "Elanı favorit et";
-    }
-    carBlock.append(favoriteSign);
-    if (car.isNew) {
-      const newSign = document.createElement("img");
-      newSign.className = "main__new-sign sign";
-      newSign.src = "./assets/images/sign-new.png";
-      newSign.alt = "Avtomobil yenidir";
-      carBlock.append(newSign);
-    }
-    if (car.isPremium) {
-      const premiumSign = document.createElement("img");
-      premiumSign.className = "main__crown-sign sign";
-      premiumSign.src = "./assets/images/sign-crown.png";
-      premiumSign.alt = "Premium (VIP) elandır";
-      carBlock.append(premiumSign);
-    }
-    if (car.isBarter) {
-      const barterSign = document.createElement("img");
-      barterSign.className = "main__barter-sign sign";
-      barterSign.src = "./assets/images/sign-refresh.png";
-      barterSign.alt = "Avtomobili barter etmək mümkündür";
-      carBlock.append(barterSign);
-    }
-    if (car.isCredit) {
-      const creditSign = document.createElement("img");
-      creditSign.className = "main__credit-sign sign";
-      creditSign.src = "./assets/images/sign-credit.png";
-      creditSign.alt = "Avtomobili kredit ilə almaq mümkündür";
-      carBlock.append(creditSign);
-    }
-    link.append(carBlock);
-    block.append(link);
-    favoriteSign.addEventListener("click", function (e) {
-      e.preventDefault();
-      toggleFavorite(car, this);
-      favorites.push(car);
-    });
-
-    link.addEventListener("click", function (e) {
-      e.preventDefault();
-      displayCar(this);
-    });
+    prepareCar(car, block);
   }
-}
-
-// FUNCTION GET AND SET OPTIONS
-function getSetOptions() {
-  options = [
-    [allBrands, brand, "brand"],
-    [allCities, city, "city"],
-    [allColors, color, "color"],
-    [allCurrencies, currency, "currency"],
-    [allBodies, body, "body"],
-    [allFuelTypes, fuel, "fuel"],
-    [allDriveTypes, drive, "drive"],
-    [allGearTypes, gear, "gear"],
-  ];
-
-  options.forEach((option) => {
-    option[0] = getOptions(cars, option[2]);
-    setOptions(option[0], option[1]);
-  });
 }
 
 // FUNCTION LAUNCH APP

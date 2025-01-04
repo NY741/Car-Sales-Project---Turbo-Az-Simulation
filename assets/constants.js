@@ -8,6 +8,7 @@ const addBlock = document.querySelector(".add-car");
 const addForm = document.getElementById("add-car__form");
 const addBrand = addForm.brand;
 const addModel = addForm.model;
+const addImgDisplay = addForm.querySelector(".add-image-display");
 const displayCarBlock = document.querySelector(".display-car");
 const displayCarTitle = displayCarBlock.querySelector(".display-car__title");
 const displayCarContainer = displayCarBlock.querySelector(
