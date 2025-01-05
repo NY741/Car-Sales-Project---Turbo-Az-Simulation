@@ -1,3 +1,92 @@
+// FUNCTION PREPARE CAR
+function prepareCar(car, block) {
+  // Image Part
+  const link = document.createElement("a");
+  link.className = "main__car-link";
+  link.dataset.id = car.id;
+  link.href = "#";
+  const carBlock = document.createElement("div");
+  carBlock.className = "main__car";
+  if (car.isSold) carBlock.classList.add("sold-car");
+  const carImageBlock = document.createElement("div");
+  carImageBlock.className = "main__img";
+  const carImage = document.createElement("img");
+  carImage.src = car.imageLink;
+  carImage.alt = car.brand + " " + car.model;
+  carImageBlock.append(carImage);
+
+  // Description Part
+  const description = document.createElement("div");
+  description.className = "main__description";
+  const price = document.createElement("p");
+  price.className = "main__price";
+  price.innerText = car.amount + "  " + car.currency;
+  const name = document.createElement("p");
+  name.className = "main__name";
+  name.innerText = car.brand + " " + car.model;
+  const base = document.createElement("p");
+  base.className = "main__base";
+  base.innerText =
+    car.year +
+    ", " +
+    car.engineVolume.toFixed(1) +
+    " L, " +
+    car.mileage +
+    " KM";
+
+  // Date Part
+  const reportDate = new Date(car.date);
+  const today = new Date();
+  const diff = today - reportDate;
+  const diffInDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const address = document.createElement("p");
+  address.className = "main__address";
+  let dayIndex = diffInDays == 0 ? "Today" : diffInDays + " days ago";
+  address.innerText = car.city + ", " + dayIndex;
+  description.append(price, name, base, address);
+  carBlock.append(carImageBlock, description);
+
+  // Icons Part
+  const favoriteSign = document.createElement("img");
+  favoriteSign.className = "main__favorite-sign sign";
+  if (car.isFavorite) {
+    favoriteSign.src = "./assets/images/sign-heart-red.png";
+    favoriteSign.alt = "Favoritlərdən çıxart";
+  } else {
+    favoriteSign.src = "./assets/images/sign-heart-simple.png";
+    favoriteSign.alt = "Elanı favorit et";
+  }
+  favoriteSign.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleFavorite(car, this);
+    favorites.push(car);
+  });
+  carBlock.append(favoriteSign);
+  addBadge(car, carBlock);
+  link.append(carBlock);
+  block.append(link);
+
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
+    displayCar(this);
+  });
+}
+
+// FUNCTION ADD BADGE
+function addBadge(car, carBlock) {
+  const types = ["new", "barter", "credit", "premium"];
+  for (let type of types) {
+    if (car[`is${capitalize(type)}`]) {
+      const badge = document.createElement("img");
+      badge.className = `main__${type}-sign sign`;
+      badge.src = `./assets/images/badges/badge-${type}.png`;
+      badge.alt = badgeDescriptions[`${type}`];
+      carBlock.append(badge);
+    }
+  }
+}
+
 // FUNCTION POP UP ADD CAR FORM +
 function popUpAddCarForm() {
   backdrop.classList.remove("hidden");

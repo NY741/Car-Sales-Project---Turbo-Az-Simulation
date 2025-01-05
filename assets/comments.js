@@ -150,3 +150,60 @@
 //     );
 //   });
 // }
+
+// // FUNCTION ADD BADGE
+// function addBadge(car, carBlock) {
+//   if (car.isNew) addNewBadge(car, carBlock);
+//   if (car.isBarter) addBarterBadge(car, carBlock);
+//   if (car.isCredit) addCreditBadge(car, carBlock);
+//   if (car.isPremium) addPremiumBadge(car, carBlock);
+// }
+
+// if (car.isNew) addNewBadge(car, carBlock);
+// if (car.isBarter) addBarterBadge(car, carBlock);
+// if (car.isCredit) addCreditBadge(car, carBlock);
+// if (car.isPremium) addPremiumBadge(car, carBlock);
+
+// // FUNCTION ADD NEW BADGE
+// function addNewBadge(car, carBlock) {
+//   if (car.isNew) {
+//     const newSign = document.createElement("img");
+//     newSign.className = "main__new-sign sign";
+//     newSign.src = "./assets/images/sign-new.png";
+//     newSign.alt = "Avtomobil yenidir";
+//     carBlock.append(newSign);
+//   }
+// }
+
+// // FUNCTION ADD BARTER BADGE
+// function addBarterBadge(car, carBlock) {
+//   if (car.isBarter) {
+//     const barterSign = document.createElement("img");
+//     barterSign.className = "main__barter-sign sign";
+//     barterSign.src = "./assets/images/sign-refresh.png";
+//     barterSign.alt = "Avtomobili barter etmək mümkündür";
+//     carBlock.append(barterSign);
+//   }
+// }
+
+// // FUNCTION ADD CREDIT BADGE
+// function addCreditBadge(car, carBlock) {
+//   if (car.isCredit) {
+//     const creditSign = document.createElement("img");
+//     creditSign.className = "main__credit-sign sign";
+//     creditSign.src = "./assets/images/sign-credit.png";
+//     creditSign.alt = "Avtomobili kredit ilə almaq mümkündür";
+//     carBlock.append(creditSign);
+//   }
+// }
+
+// // FUNCTION ADD PREMIUM BADGE
+// function addPremiumBadge(car, carBlock) {
+//   if (car.isPremium) {
+//     const premiumSign = document.createElement("img");
+//     premiumSign.className = "main__crown-sign sign";
+//     premiumSign.src = "./assets/images/sign-crown.png";
+//     premiumSign.alt = "Premium (VIP) elandır";
+//     carBlock.append(premiumSign);
+//   }
+// }

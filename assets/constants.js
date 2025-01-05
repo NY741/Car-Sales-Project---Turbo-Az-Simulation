@@ -98,3 +98,11 @@ let favorites = [];
 let convertUsdToAzn = 1.7;
 let convertEurToAzn = 1.85;
 let isInitialRendering = true;
+
+// Descriptions
+badgeDescriptions = {
+  new: "Avtomobil yenidir",
+  barter: "Avtomobili barter etmək mümkündür",
+  credit: "Avtomobili kredit ilə almaq mümkündür",
+  premium: "Bu elan premium (VIP) klassdır",
+};
