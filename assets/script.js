@@ -21,8 +21,8 @@ addBrand.addEventListener("change", function (e) {
   setModelChoice(this, addModel);
 });
 
-minPriceAm.addEventListener("change", setCurrChoice);
-maxPriceAm.addEventListener("change", setCurrChoice);
+minPriceAm.addEventListener("input", setCurrChoice);
+maxPriceAm.addEventListener("input", setCurrChoice);
 showMoreBtn.addEventListener("click", function (e) {
   e.preventDefault();
   toggleMoreOptions();
@@ -155,21 +155,23 @@ function searchCars(
 ) {
   normalizeSortButtons();
   sortedCars = cars;
+  const mainElements = document.querySelectorAll("#search-form .main-element");
   if (favorite.checked) sortedCars = sortedCars.filter((car) => car.isFavorite);
   if (notCrashed.checked)
     sortedCars = sortedCars.filter((car) => !car.isCrashed);
-  const mainElements = document.querySelectorAll("#search-form .main-element");
-  console.log(mainElements);
+  // console.log(mainElements);
 
   for (let element of mainElements) {
     let name = element.name;
-    name = camelCase(name);
     let value = element.value;
+
+    name = camelCase(name);
+
     if (name == "seatNum" && value == "") value = "all";
 
     if (value !== "all") {
       sortedCars = sortedCars.filter((car) => {
-        if (name == "favorite") return car.isFavorite; // favorite
+        // if (name == "favorite") return car.isFavorite; // favorite
         if (name == "condition") {
           // condition
           if (value == "new") return car.isNew;
@@ -186,7 +188,6 @@ function searchCars(
           let maxAmount = +maxPriceAm;
           console.log(minAmount);
           console.log(maxAmount);
-          console.log(sortedCars);
           if (minPriceAm == "") minAmount = 0;
           if (maxPriceAm == "") maxAmount = Infinity;
           if (conversion.checked) {
@@ -234,6 +235,21 @@ function searchCars(
       });
     }
   }
+
+  // for (let i = 0; i < minMaxFields.length; i++) {
+  //   sortedCars = sortedCars.filter((car) => {
+  //     let minField = minMaxFields[i][0].value;
+  //     let maxField = minMaxFields[i][1].value;
+  //     console.log(minField);
+  //     console.log(maxField);
+  //     if (!minField) minField == 0;
+  //     if (!maxField) maxField == Infinity;
+  //     return (
+  //       car[`${minMaxTypes[i]}`] >= minField &&
+  //       car[`${minMaxTypes[i]}`] >= maxField
+  //     );
+  //   });
+  // }
 
   // Sort between Min Year and Max Year
   sortedCars = sortedCars.filter((car) => {

@@ -139,6 +139,7 @@ function displayCar(link) {
   // FUNCTION BUY CAR
   function buyCar(link, car) {
     closeDisplayCarBlock();
+    console.log(car);
     car.isSold = true;
     link.querySelector(".main__car").classList.add("sold-car");
   }
@@ -223,7 +224,7 @@ function getSetOptions() {
     [allBrands, brand, "brand"],
     [allCities, city, "city"],
     [allColors, color, "color"],
-    [allCurrencies, currency, "currency"],
+    // [allCurrencies, currency, "currency"],
     [allBodies, body, "body"],
     [allFuelTypes, fuel, "fuel"],
     [allDriveTypes, drive, "drive"],

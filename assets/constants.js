@@ -56,13 +56,6 @@ const maxHorsePower = document.getElementById("horse-power-max");
 const minMileage = document.getElementById("mileage-min");
 const maxMileage = document.getElementById("mileage-max");
 const seatNum = document.getElementById("seat-num");
-const minMaxFields = [
-  [minPriceAm, maxPriceAm],
-  [minYear, maxYear],
-  [minEngineVolume, maxEngineVolume],
-  [minHorsePower, maxHorsePower],
-  [minMileage, maxMileage],
-];
 
 // Search Form Elements - Checkbox and Radio Buttons
 const notCrashed = document.getElementById("not-crashed");
@@ -100,7 +93,15 @@ let convertEurToAzn = 1.85;
 let isInitialRendering = true;
 
 // Descriptions
-badgeDescriptions = {
+const minMaxFields = [
+  [minPriceAm, maxPriceAm],
+  [minYear, maxYear],
+  [minEngineVolume, maxEngineVolume],
+  [minHorsePower, maxHorsePower],
+  [minMileage, maxMileage],
+];
+const minMaxTypes = ["amount", "year", "engineVolume", "horsePower", "mileage"];
+const badgeDescriptions = {
   new: "Avtomobil yenidir",
   barter: "Avtomobili barter etmək mümkündür",
   credit: "Avtomobili kredit ilə almaq mümkündür",
